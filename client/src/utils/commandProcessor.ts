@@ -48,21 +48,64 @@ If you can't own it, you can't trust it. If you can't read it, you shouldn't run
   }
 };
 
-// Required commands to unlock whoami
-const REQUIRED_COMMANDS = [
-  'help', 'ls', 'pwd', 'cat', 'neofetch', 'htop', 'fortune', 'matrix', 'cowsay', 'parrot', 'nmap'
+// All available commands for random selection
+const ALL_COMMANDS = [
+  'help', 'ls', 'pwd', 'cat', 'neofetch', 'htop', 'fortune', 'matrix', 'cowsay', 'parrot', 'nmap',
+  'pwn', 'hack', 'exploit', 'decode', 'figlet', 'toilet', 'lolcat', 'bat', 'exa', 'clear'
 ];
 
+// Generate random 11 commands per session
+function generateRandomRequiredCommands(): string[] {
+  const shuffled = [...ALL_COMMANDS].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, 11);
+}
+
+// Session-specific required commands (generated once per session)
+let REQUIRED_COMMANDS: string[] = [];
+
+function initializeSession(): void {
+  REQUIRED_COMMANDS = generateRandomRequiredCommands();
+}
+
 function hasCompletedPrerequisites(sessionCommands: Set<string>): boolean {
+  if (REQUIRED_COMMANDS.length === 0) {
+    initializeSession();
+  }
   return REQUIRED_COMMANDS.every(cmd => sessionCommands.has(cmd));
 }
 
 function getUnlockedCommands(sessionCommands: Set<string>): string[] {
+  if (REQUIRED_COMMANDS.length === 0) {
+    initializeSession();
+  }
   return REQUIRED_COMMANDS.filter(cmd => sessionCommands.has(cmd));
 }
 
 function getRemainingCommands(sessionCommands: Set<string>): string[] {
+  if (REQUIRED_COMMANDS.length === 0) {
+    initializeSession();
+  }
   return REQUIRED_COMMANDS.filter(cmd => !sessionCommands.has(cmd));
+}
+
+// Security: Sanitize all inputs to prevent path traversal and injection
+function sanitizeInput(input: string): string {
+  // Remove dangerous characters and patterns
+  return input
+    .replace(/\.\./g, '') // Remove path traversal attempts
+    .replace(/[;&|`$(){}[\]<>]/g, '') // Remove shell injection characters
+    .replace(/\s+/g, ' ') // Normalize whitespace
+    .trim()
+    .substring(0, 100); // Limit length
+}
+
+// Security: Validate command against whitelist
+function isValidCommand(command: string): boolean {
+  const allowedCommands = [
+    ...ALL_COMMANDS, 
+    'sudo', 'whoami', 'manifesto', 'stack', 'tools', 'beliefs'
+  ];
+  return allowedCommands.includes(command.toLowerCase());
 }
 
 async function typewriterEffect(text: string, delay: number = 50): Promise<string> {
@@ -72,9 +115,19 @@ async function typewriterEffect(text: string, delay: number = 50): Promise<strin
 }
 
 export async function processCommand(input: string, sessionCommands: Set<string> = new Set()): Promise<TerminalLine[]> {
-  const args = input.trim().split(' ');
+  // Security: Sanitize input
+  const sanitizedInput = sanitizeInput(input);
+  const args = sanitizedInput.trim().split(' ');
   const command = args[0].toLowerCase();
   const params = args.slice(1);
+
+  // Security: Validate command
+  if (!isValidCommand(command) && command !== '') {
+    return [
+      { content: `<span class="text-soft-red">Command '${command}' not allowed for security reasons</span>`, className: '' },
+      { content: '<span class="text-muted-gray">Type \'help\' to see available commands.</span>', className: '' }
+    ];
+  }
 
   switch (command) {
     case 'help':
@@ -457,13 +510,22 @@ export async function processCommand(input: string, sessionCommands: Set<string>
           { content: '<span class="text-soft-red">Usage: cat <filename></span>', className: '' }
         ];
       }
-      if (fileSystem['~'] && fileSystem['~'][filename]) {
+      
+      // Security: Validate filename to prevent path traversal
+      const safeFilename = filename.replace(/[^a-zA-Z0-9._-]/g, '');
+      if (safeFilename !== filename) {
         return [
-          { content: `<pre class="text-terminal-green">${fileSystem['~'][filename]}</pre>`, className: '' }
+          { content: '<span class="text-soft-red">Invalid filename. Only alphanumeric characters, dots, hyphens, and underscores allowed.</span>', className: '' }
+        ];
+      }
+      
+      if (fileSystem['~'] && fileSystem['~'][safeFilename]) {
+        return [
+          { content: `<pre class="text-terminal-green">${fileSystem['~'][safeFilename]}</pre>`, className: '' }
         ];
       } else {
         return [
-          { content: `<span class="text-soft-red">cat: ${filename}: No such file or directory</span>`, className: '' }
+          { content: `<span class="text-soft-red">cat: ${safeFilename}: No such file or directory</span>`, className: '' }
         ];
       }
 

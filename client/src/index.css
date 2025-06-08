@@ -68,6 +68,9 @@
     color: var(--terminal-green);
     overflow: hidden;
     height: 100vh;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
   }
 }
 
@@ -125,6 +128,7 @@
   pointer-events: none;
   z-index: 1;
   opacity: 0.1;
+  contain: layout style paint;
 }
 
 .matrix-char {
@@ -133,11 +137,15 @@
   font-family: 'Source Code Pro', monospace;
   font-size: 18px;
   animation: matrix 20s linear infinite;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .terminal-container {
   position: relative;
   z-index: 10;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .glitch-text {

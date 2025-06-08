@@ -58,6 +58,8 @@ export const insertTerminalSessionSchema = createInsertSchema(terminalSessions).
   sessionId: true,
   commandsExecuted: true,
   whoamiUnlocked: true,
+}).extend({
+  commandsExecuted: z.array(z.string()).default([]),
 });
 
 export const insertCommandLogSchema = createInsertSchema(commandLogs).pick({
