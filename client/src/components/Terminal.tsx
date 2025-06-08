@@ -75,9 +75,18 @@ export default function Terminal() {
   }, []);
 
   useEffect(() => {
-    // Scroll to bottom when output changes
+    // Smooth scroll to bottom when output changes
     if (outputRef.current) {
-      outputRef.current.scrollTop = outputRef.current.scrollHeight;
+      const scrollElement = outputRef.current;
+      const scrollToBottom = () => {
+        scrollElement.scrollTo({
+          top: scrollElement.scrollHeight,
+          behavior: 'smooth'
+        });
+      };
+      
+      // Use requestAnimationFrame for smoother scrolling
+      requestAnimationFrame(scrollToBottom);
     }
   }, [output]);
 

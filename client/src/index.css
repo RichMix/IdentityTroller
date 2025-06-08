@@ -180,6 +180,9 @@
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--terminal-green) var(--terminal-bg);
+  scroll-behavior: smooth;
+  transform: translateZ(0); /* Force hardware acceleration */
+  will-change: scroll-position;
 }
 
 .terminal-output::-webkit-scrollbar {
@@ -188,11 +191,17 @@
 
 .terminal-output::-webkit-scrollbar-track {
   background: var(--terminal-bg);
+  border-radius: 4px;
 }
 
 .terminal-output::-webkit-scrollbar-thumb {
   background: var(--terminal-green);
   border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.terminal-output::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-green);
 }
 
 .parrot-container {
