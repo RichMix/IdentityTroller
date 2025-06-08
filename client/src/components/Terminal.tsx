@@ -7,6 +7,10 @@ interface TerminalLine {
   className?: string;
 }
 
+// Session state for command tracking
+let sessionCommands = new Set<string>();
+let sessionStartTime = Date.now();
+
 export default function Terminal() {
   const [input, setInput] = useState('');
   const [output, setOutput] = useState<TerminalLine[]>([]);
@@ -18,6 +22,10 @@ export default function Terminal() {
   const matrixRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Reset session state on page refresh
+    sessionCommands.clear();
+    sessionStartTime = Date.now();
+
     // Initialize matrix rain
     if (matrixRef.current) {
       createMatrixRain(matrixRef.current);
@@ -32,7 +40,7 @@ export default function Terminal() {
       { content: 'Welcome to the resistance.', className: 'text-terminal-green' },
       { content: '', className: '' },
       { content: "Type 'help' to see available commands.", className: 'text-muted-gray' },
-      { content: "Type 'whoami' to discover the identity behind this terminal.", className: 'text-muted-gray' },
+      { content: "Type 'ls' to explore the file system.", className: 'text-muted-gray' },
       { content: '', className: '' },
     ];
 
@@ -43,7 +51,7 @@ export default function Terminal() {
           setIsBootComplete(true);
           setTimeout(() => {
             setOutput(prev => [...prev, { 
-              content: '💡 Hint: Try typing "whoami" to discover the identity behind this terminal', 
+              content: '💡 Hint: Explore the system to unlock access to restricted commands', 
               className: 'text-muted-gray' 
             }]);
           }, 2000);
@@ -84,12 +92,15 @@ export default function Terminal() {
 
     // Add command to output
     setOutput(prev => [...prev, { 
-      content: `CHOPP_SUEYY@insurgent:~$ ${input}`, 
+      content: `insurgent@hacker:~$ ${input}`, 
       className: 'text-neon-green' 
     }]);
 
+    // Track command for session
+    sessionCommands.add(input.trim().toLowerCase());
+
     // Process command
-    const result = await processCommand(input.trim());
+    const result = await processCommand(input.trim(), sessionCommands);
     
     // Add result to output
     result.forEach(line => {
@@ -133,7 +144,7 @@ export default function Terminal() {
             <div className="w-3 h-3 bg-soft-red rounded-full"></div>
             <div className="w-3 h-3 bg-warning-yellow rounded-full"></div>
             <div className="w-3 h-3 bg-terminal-green rounded-full"></div>
-            <span className="ml-4 text-sm">CHOPP_SUEYY@digital-insurgent:~$</span>
+            <span className="ml-4 text-sm">insurgent@hacker:~$</span>
           </div>
         </div>
         
@@ -154,7 +165,7 @@ export default function Terminal() {
           <div className="p-4 border-t border-terminal-green bg-terminal-bg">
             <form onSubmit={handleSubmit}>
               <div className="flex items-center">
-                <span className="text-neon-green mr-2">CHOPP_SUEYY@insurgent:~$</span>
+                <span className="text-neon-green mr-2">insurgent@hacker:~$</span>
                 <input 
                   ref={inputRef}
                   type="text" 

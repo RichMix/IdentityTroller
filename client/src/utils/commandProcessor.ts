@@ -47,7 +47,30 @@ If you can't own it, you can't trust it. If you can't read it, you shouldn't run
   }
 };
 
-export async function processCommand(input: string): Promise<TerminalLine[]> {
+// Required commands to unlock whoami
+const REQUIRED_COMMANDS = [
+  'help', 'ls', 'pwd', 'cat', 'neofetch', 'htop', 'fortune', 'matrix', 'cowsay', 'parrot', 'nmap'
+];
+
+function hasCompletedPrerequisites(sessionCommands: Set<string>): boolean {
+  return REQUIRED_COMMANDS.every(cmd => sessionCommands.has(cmd));
+}
+
+function getUnlockedCommands(sessionCommands: Set<string>): string[] {
+  return REQUIRED_COMMANDS.filter(cmd => sessionCommands.has(cmd));
+}
+
+function getRemainingCommands(sessionCommands: Set<string>): string[] {
+  return REQUIRED_COMMANDS.filter(cmd => !sessionCommands.has(cmd));
+}
+
+async function typewriterEffect(text: string, delay: number = 50): Promise<string> {
+  // Simulate typewriter effect by returning the full text
+  // In a real implementation, this would animate character by character
+  return text;
+}
+
+export async function processCommand(input: string, sessionCommands: Set<string> = new Set()): Promise<TerminalLine[]> {
   const args = input.trim().split(' ');
   const command = args[0].toLowerCase();
   const params = args.slice(1);
@@ -92,10 +115,31 @@ export async function processCommand(input: string): Promise<TerminalLine[]> {
       ];
 
     case 'whoami':
+      if (!hasCompletedPrerequisites(sessionCommands)) {
+        const remaining = getRemainingCommands(sessionCommands);
+        const completed = getUnlockedCommands(sessionCommands);
+        return [
+          { content: '', className: '' },
+          { content: '┌─────────────────────────────────────────────────────┐', className: 'text-soft-red' },
+          { content: '│              ACCESS DENIED - LOCKED                │', className: 'text-soft-red' },
+          { content: '└─────────────────────────────────────────────────────┘', className: 'text-soft-red' },
+          { content: '', className: '' },
+          { content: '🔒 Identity revelation requires system exploration.', className: 'text-warning-yellow' },
+          { content: '', className: '' },
+          { content: `<span class="text-terminal-green">Commands unlocked (${completed.length}/11):</span>`, className: '' },
+          ...completed.map(cmd => ({ content: `  ✓ ${cmd}`, className: 'text-terminal-green' })),
+          { content: '', className: '' },
+          { content: `<span class="text-soft-red">Commands required (${remaining.length} remaining):</span>`, className: '' },
+          ...remaining.map(cmd => ({ content: `  ✗ ${cmd}`, className: 'text-muted-gray' })),
+          { content: '', className: '' },
+          { content: 'Explore the system using these commands to unlock the identity.', className: 'text-muted-gray' },
+        ];
+      }
+
       return [
         { content: '', className: '' },
         { content: '┌─────────────────────────────────────────────────────┐', className: 'text-terminal-green' },
-        { content: '│                IDENTITY REVELATION                  │', className: 'text-terminal-green' },
+        { content: '│              IDENTITY REVELATION UNLOCKED           │', className: 'text-terminal-green' },
         { content: '└─────────────────────────────────────────────────────┘', className: 'text-terminal-green' },
         { content: '', className: '' },
         { content: '<span class="text-neon-green glitch-text" data-text="CHOPP_SUEYY">CHOPP_SUEYY</span>', className: '' },
@@ -114,8 +158,8 @@ export async function processCommand(input: string): Promise<TerminalLine[]> {
         { content: '"Code is language. Language is power.', className: 'text-terminal-green' },
         { content: 'Power belongs to those who break the system to rebuild it better."', className: 'text-terminal-green' },
         { content: '', className: '' },
-        { content: '<span class="text-terminal-green">You have discovered the identity of the terminal guardian.</span>', className: '' },
-        { content: '<span class="text-muted-gray">The digital insurgent reveals themselves to those who ask the right questions.</span>', className: '' },
+        { content: '<span class="text-terminal-green">🎉 Congratulations! You have unlocked the digital insurgent\'s identity.</span>', className: '' },
+        { content: '<span class="text-muted-gray">Through exploration and curiosity, the guardian reveals their true self.</span>', className: '' },
       ];
 
     case 'manifesto':
