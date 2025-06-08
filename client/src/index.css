@@ -214,6 +214,14 @@
   animation: blink 1s infinite;
 }
 
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
 .text-terminal-green {
   color: var(--terminal-green);
 }
