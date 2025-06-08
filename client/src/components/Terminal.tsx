@@ -100,6 +100,12 @@ export default function Terminal() {
     sessionCommands.add(input.trim().toLowerCase());
 
     // Process command
+    if (input.trim().toLowerCase() === 'clear') {
+      setOutput([]);
+      setInput('');
+      return;
+    }
+    
     const result = await processCommand(input.trim(), sessionCommands);
     
     // Add result to output

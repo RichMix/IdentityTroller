@@ -1,4 +1,5 @@
 import { getCowsay, getFiglet, getParrot, getToilet, getNeofetch } from './ascii';
+import { animateNmapScan, animateMatrixHack, animateLoadingSequence } from './animations';
 
 interface TerminalLine {
   content: string;
@@ -293,24 +294,23 @@ export async function processCommand(input: string, sessionCommands: Set<string>
       setTimeout(() => {
         const matrixContainer = document.querySelector('.matrix-rain');
         if (matrixContainer) {
-          for (let i = 0; i < 20; i++) {
+          for (let i = 0; i < 30; i++) {
             const char = document.createElement('div');
             char.className = 'matrix-char';
             char.textContent = Math.random() > 0.5 ? '1' : '0';
             char.style.left = Math.random() * 100 + '%';
-            char.style.animationDuration = '2s';
+            char.style.animationDuration = '3s';
+            char.style.color = 'var(--neon-green)';
             matrixContainer.appendChild(char);
             setTimeout(() => {
               if (char.parentNode) {
                 char.parentNode.removeChild(char);
               }
-            }, 2000);
+            }, 3000);
           }
         }
       }, 100);
-      return [
-        { content: '<span class="text-neon-green">Entering the Matrix...</span>', className: '' }
-      ];
+      return await animateMatrixHack();
 
     case 'fortune':
       const fortunes = [
@@ -340,19 +340,7 @@ export async function processCommand(input: string, sessionCommands: Set<string>
 
     case 'nmap':
       const target = params[0] || 'target.example.com';
-      return [
-        { content: `<span class="text-warning-yellow">Starting Nmap scan on ${target}...</span>`, className: '' },
-        { content: '', className: '' },
-        { content: `Nmap scan report for ${target}`, className: 'text-terminal-green' },
-        { content: 'Host is up (0.12s latency).', className: 'text-terminal-green' },
-        { content: 'PORT     STATE SERVICE     VERSION', className: 'text-terminal-green' },
-        { content: '22/tcp   open  ssh         OpenSSH 8.0', className: 'text-terminal-green' },
-        { content: '80/tcp   open  http        nginx 1.18.0', className: 'text-terminal-green' },
-        { content: '443/tcp  open  https       nginx 1.18.0', className: 'text-terminal-green' },
-        { content: '3306/tcp open  mysql       MySQL 8.0.25', className: 'text-terminal-green' },
-        { content: '', className: '' },
-        { content: '<span class="text-terminal-green">Scan completed. 4 ports open out of 1000 scanned.</span>', className: '' }
-      ];
+      return await animateNmapScan(target);
 
     case 'pwn':
       return [
@@ -508,16 +496,24 @@ export async function processCommand(input: string, sessionCommands: Set<string>
       ];
 
     case 'clear':
-      // This will be handled by the Terminal component
+      // This is handled by the Terminal component
       return [];
 
     case 'sudo':
+      // Rick roll redirect
       setTimeout(() => {
         window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank');
       }, 2000);
+      
       return [
-        { content: '<span class="text-soft-red">Nice try! But sudo access is restricted...</span>', className: '' },
-        { content: '<span class="text-warning-yellow">Redirecting to educational content...</span>', className: '' }
+        { content: '', className: '' },
+        { content: '<span class="text-soft-red">sudo: Permission denied</span>', className: '' },
+        { content: '<span class="text-warning-yellow">Security violation detected!</span>', className: '' },
+        { content: '', className: '' },
+        { content: '<span class="text-neon-green">🎵 Initiating security protocol... 🎵</span>', className: '' },
+        { content: '', className: '' },
+        { content: '<span class="text-muted-gray">You just got Rick Rolled! Opening YouTube...</span>', className: '' },
+        { content: '<span class="text-muted-gray">Never gonna give you up, never gonna let you down! 🕺</span>', className: '' }
       ];
 
     default:
