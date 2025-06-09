@@ -460,11 +460,7 @@ export async function processCommand(input: string, sessionCommands: Set<string>
         { content: `<span class="text-warning-yellow">💫 Hacker Wisdom:</span> ${fortunes[Math.floor(Math.random() * fortunes.length)]}`, className: '' }
       ];
 
-    case 'lolcat':
-      const rainbowText = params.join(' ') || "RAINBOW HACKER TEXT!";
-      return [
-        { content: `<span style="background: linear-gradient(90deg, #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${rainbowText}</span>`, className: '' }
-      ];
+
 
     case 'toilet':
       return [
