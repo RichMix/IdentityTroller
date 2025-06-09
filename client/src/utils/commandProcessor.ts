@@ -1,4 +1,4 @@
-import { getCowsay, getFiglet, getParrot, getToilet, getNeofetch } from './ascii';
+import { getCowsay, getCowthink, getFiglet, getParrot, getToilet, getNeofetch, getNyancat, getSteamLocomotive, getPipes, getAsciiAquarium, getLolcat } from './ascii';
 import { animateNmapScan, animateMatrixHack, animateLoadingSequence } from './animations';
 
 interface TerminalLine {
@@ -50,8 +50,9 @@ If you can't own it, you can't trust it. If you can't read it, you shouldn't run
 
 // All available commands for random selection
 const ALL_COMMANDS = [
-  'help', 'ls', 'pwd', 'cat', 'neofetch', 'htop', 'fortune', 'matrix', 'cowsay', 'parrot', 'nmap',
-  'pwn', 'hack', 'exploit', 'decode', 'figlet', 'toilet', 'lolcat', 'bat', 'exa', 'clear'
+  'help', 'ls', 'pwd', 'cat', 'neofetch', 'htop', 'fortune', 'matrix', 'cowsay', 'cowthink', 'parrot', 'nmap',
+  'pwn', 'hack', 'exploit', 'decode', 'figlet', 'toilet', 'lolcat', 'bat', 'exa', 'clear', 'nyancat', 
+  'sl', 'pipes', 'asciiquarium', 'screenfetch', 'btop', 'cmatrix'
 ];
 
 // Generate random 11 commands per session
@@ -329,6 +330,85 @@ export async function processCommand(input: string, sessionCommands: Set<string>
       const cowText = params.join(' ') || "HACK THE PLANET!";
       return [
         { content: `<pre class="text-terminal-green">${getCowsay(cowText)}</pre>`, className: '' }
+      ];
+
+    case 'cowthink':
+      const thinkMessage = params.join(' ') || 'This might be a trap...';
+      return [
+        { content: `<pre class="text-terminal-green">${getCowthink(thinkMessage)}</pre>`, className: '' }
+      ];
+
+    case 'nyancat':
+      return [
+        { content: getNyancat(), className: '' }
+      ];
+
+    case 'sl':
+      return [
+        { content: getSteamLocomotive(), className: '' }
+      ];
+
+    case 'pipes':
+      return [
+        { content: getPipes(), className: '' }
+      ];
+
+    case 'asciiquarium':
+      return [
+        { content: getAsciiAquarium(), className: '' }
+      ];
+
+    case 'lolcat':
+      const lolMessage = params.join(' ') || 'RAINBOW HACKER TEXT!';
+      return [
+        { content: `<div class="text-terminal-green">${getLolcat(lolMessage)}</div>`, className: '' }
+      ];
+
+    case 'screenfetch':
+      return [
+        { content: getNeofetch(), className: '' }
+      ];
+
+    case 'btop':
+      return [
+        { content: '', className: '' },
+        { content: '<span class="text-neon-green">Modern Resource Monitor</span>', className: '' },
+        { content: '', className: '' },
+        { content: 'CPU: ████████████████████░░ 85.2%', className: 'text-terminal-green' },
+        { content: 'MEM: ██████████████░░░░░░░░ 68.4%', className: 'text-terminal-green' },
+        { content: 'SWP: ████░░░░░░░░░░░░░░░░░░ 18.7%', className: 'text-terminal-green' },
+        { content: 'NET: ▲ 1.2MB/s ▼ 800KB/s', className: 'text-terminal-green' },
+        { content: '', className: '' },
+        { content: '<span class="text-warning-yellow">Top Processes:</span>', className: '' },
+        { content: 'neural_hack_ai    45.2%', className: 'text-terminal-green' },
+        { content: 'crypto_miner      23.1%', className: 'text-terminal-green' },
+        { content: 'exploit_scanner   12.8%', className: 'text-terminal-green' }
+      ];
+
+    case 'cmatrix':
+      setTimeout(() => {
+        const matrixContainer = document.querySelector('.matrix-rain');
+        if (matrixContainer) {
+          for (let i = 0; i < 50; i++) {
+            const char = document.createElement('div');
+            char.className = 'matrix-char';
+            char.textContent = String.fromCharCode(0x30A0 + Math.random() * 96);
+            char.style.left = Math.random() * 100 + '%';
+            char.style.animationDuration = '4s';
+            char.style.color = 'var(--neon-green)';
+            char.style.fontSize = '16px';
+            matrixContainer.appendChild(char);
+            setTimeout(() => {
+              if (char.parentNode) {
+                char.parentNode.removeChild(char);
+              }
+            }, 4000);
+          }
+        }
+      }, 100);
+      return [
+        { content: '<span class="text-neon-green">Digital rain activated...</span>', className: '' },
+        { content: '<span class="text-terminal-green">The Matrix has you...</span>', className: '' }
       ];
 
     case 'figlet':

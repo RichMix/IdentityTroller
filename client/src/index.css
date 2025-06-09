@@ -68,9 +68,13 @@
     color: var(--terminal-green);
     overflow: hidden;
     height: 100vh;
-    transform: translateZ(0);
+    transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
     perspective: 1000px;
+    -webkit-transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    image-rendering: optimizeSpeed;
+    image-rendering: -webkit-optimize-contrast;
   }
 }
 
@@ -188,9 +192,11 @@
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--terminal-green) var(--terminal-bg);
-  scroll-behavior: smooth;
-  transform: translateZ(0); /* Force hardware acceleration */
-  will-change: scroll-position;
+  scroll-behavior: auto;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-overflow-scrolling: touch;
+  contain: layout style paint;
 }
 
 .terminal-output::-webkit-scrollbar {

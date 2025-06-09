@@ -22,9 +22,14 @@ export default function Terminal() {
   const matrixRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Reset session state on page refresh
+    // Reset session state on page refresh - generates new random command set
     sessionCommands.clear();
     sessionStartTime = Date.now();
+    
+    // Force regeneration of required commands for new session
+    if (typeof window !== 'undefined') {
+      window.sessionStorage.removeItem('terminalSession');
+    }
 
     // Initialize matrix rain
     if (matrixRef.current) {

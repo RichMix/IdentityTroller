@@ -1,0 +1,51 @@
+Name	Command	Description
+cowsay	cowsay "HACK THE PLANET"	ASCII cow (or other animals) says your text
+cowthink	cowthink "This might be a trap..."	Same as cowsay but with thought bubbles
+fortune	`fortune	cowsay`
+toilet	toilet -f mono12 -F metal "CHOPP"	Epic text banners with color and flair
+figlet	figlet "CHOPP_SUEYY"	Large ASCII text banners
+lolcat	`echo "rainbows!"	lolcat`
+cmatrix	cmatrix	Matrix digital rain animation
+pipes.sh	pipes.sh	Draws animated pipes on your terminal
+sl	sl (after mistyping ls)	A steam train chugs across your terminal
+neofetch	neofetch	Shows system info with ASCII distro logo
+screenfetch	screenfetch	Similar to neofetch, great for screenshots
+asciiquarium	asciiquarium	Animated aquarium in terminal (requires Perl)
+bb	bb	Wild ASCII demo — music, visuals, and animations
+parrot.live	curl parrot.live	Dancing parrot animation in your terminal
+nyancat	nyancat	Nyan Cat in full terminal glory (looping!)
+
+🛠️ Useful and Badass Tools with Style
+Name	Command	Description
+htop	htop	Interactive system monitor (way better than top)
+btop	btop	Modern, beautiful resource monitor
+glow	glow README.md	Render Markdown in the terminal
+bat	bat filename	Syntax-highlighted cat alternative
+exa	exa -l --color=always	Better ls with colors and tree view
+fzf	fzf	Fuzzy finder for files, history, and more
+thefuck	fuck after typo	Auto-corrects your last mistaken command
+tldr	tldr curl	Community-driven man pages that don’t suck
+onefetch	onefetch	Git repo summary + language stats in style
+watchexec	watchexec -r ./run.sh	Run a command whenever files change
+lolbash	Bash prompt animations like hacker typing effect (custom PS1)	
+
+💀 Install Recommendations (Debian/Ubuntu-based)
+bash
+Copy
+Edit
+sudo apt install cowsay fortune toilet figlet lolcat cmatrix sl neofetch \
+                 screenfetch asciiquarium bb curl htop btop tldr bat fzf
+
+# Optional extras:
+sudo snap install glow
+cargo install onefetch
+🧙‍♂️ Bonus: Add to .bashrc or .zshrc
+bash
+Copy
+Edit
+# Fancy welcome
+neofetch
+fortune | cowsay | lolcat
+
+# Replace boring ls
+alias ls='exa --color=auto --icons'
