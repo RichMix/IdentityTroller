@@ -9,7 +9,48 @@ interface TerminalLine {
 // File system simulation
 const fileSystem: Record<string, Record<string, string>> = {
   '~': {
-    'manifesto.txt': `🧠 The Manifesto of CHOPP_SUEYY
+    'manifesto.txt': `[LOCKED] 🔒 Access Denied - Manifesto Encrypted
+Authentication required: Complete system exploration to unlock identity files.`,
+    'tools.txt': `[LOCKED] 🔒 Access Denied - Toolset Classified  
+Security Protocol: Identity verification needed before revealing arsenal.`,
+    'beliefs.txt': `[LOCKED] 🔒 Access Denied - Philosophy Protected
+Clearance Level: Explore terminal commands to gain access rights.`,
+    'readme.txt': `📋 TERMINAL ACCESS PROTOCOL
+
+Welcome to the digital insurgent's terminal interface.
+
+Current Status: GUEST ACCESS - LIMITED PRIVILEGES
+Identity Status: UNKNOWN - VERIFICATION REQUIRED
+
+To unlock the full system and reveal the operator's identity:
+• Execute 11 unique commands from the available arsenal
+• Each command unlocks deeper system access
+• Type 'help' to see available commands
+• Type 'whoami' after exploration to reveal identity
+
+WARNING: Unauthorized access attempts will be logged.
+This system is monitored by advanced AI countermeasures.
+
+BEGIN EXPLORATION...`,
+    'version.txt': `🔄 System Version Control
+
+TERMINAL_VERSION: 2.1.4-insurgent
+BUILD_DATE: 2024-12-08
+SECURITY_LEVEL: CLASSIFIED
+OPERATOR: [REDACTED]
+ACCESS_TIER: GUEST
+
+Last Updated: Identity protection protocols enhanced
+Next Update: Scheduled after authentication completion
+
+System requires 11 command executions for full access.
+Current session: EXPLORATION MODE`
+  }
+};
+
+// Unlocked file contents for authenticated users
+const unlockedFiles: Record<string, string> = {
+  'manifesto.txt': `🧠 The Manifesto of CHOPP_SUEYY
 "Code is language. Language is power. Power belongs to those who break the system to rebuild it better."
 
 I am CHOPP_SUEYY — a digital insurgent, full-stack breaker and builder, and ghost in the machine. 
@@ -31,21 +72,34 @@ My stack is Python + Bash + Solidity + Mongo + Tailwind + Rage.
 My firewall is my purpose.
 My proxy is truth.
 My payload is justice.`,
-    'tools.txt': `🔧 CHOPP_SUEYY Toolset
+  'tools.txt': `🔧 CHOPP_SUEYY Toolset
 
 Languages: Python, JavaScript, Solidity, Bash, CTF Scripting
 Frameworks: Flask, Foundry, React, TailwindCSS
 Toolchains: Burp Suite, Hashcat, Metasploit, Wireshark, Ghidra, x64dbg
 Mission Tools: Canvas AI Assistant, CTF Decoder Suite, Blockchain Explorers
 Operating Systems: ParrotSec, Kali Linux, MacOS`,
-    'beliefs.txt': `🔥 Guiding Beliefs
+  'beliefs.txt': `🔥 Guiding Beliefs
 
 Every system can be understood.
 Every lock was made to be tested.
 The stories of the oppressed must be told — in plaintext, JSON, and code.
 Automation without meaning is wasted electricity.
-If you can't own it, you can't trust it. If you can't read it, you shouldn't run it.`
-  }
+If you can't own it, you can't trust it. If you can't read it, you shouldn't run it.`,
+  'version.txt': `🔄 System Version Control - AUTHENTICATED ACCESS
+
+TERMINAL_VERSION: 2.1.4-insurgent-unlocked
+BUILD_DATE: 2024-12-08
+SECURITY_LEVEL: FULL_ACCESS_GRANTED
+OPERATOR: CHOPP_SUEYY - Digital Insurgent
+ACCESS_TIER: AUTHENTICATED_USER
+
+Authentication completed successfully.
+Identity verification: PASSED
+Command exploration: COMPLETED (11/11)
+
+System Status: All files and functions unlocked.
+Welcome back, CHOPP_SUEYY.`
 };
 
 // All available commands for random selection
@@ -218,6 +272,20 @@ export async function processCommand(input: string, sessionCommands: Set<string>
       ];
 
     case 'manifesto':
+      if (!hasCompletedPrerequisites(sessionCommands)) {
+        return [
+          { content: '', className: '' },
+          { content: '┌─────────────────────────────────────────────────────┐', className: 'text-soft-red' },
+          { content: '│              MANIFESTO ACCESS DENIED                │', className: 'text-soft-red' },
+          { content: '└─────────────────────────────────────────────────────┘', className: 'text-soft-red' },
+          { content: '', className: '' },
+          { content: '🔒 The manifesto is encrypted and requires authentication.', className: 'text-warning-yellow' },
+          { content: '', className: '' },
+          { content: 'Complete system exploration to unlock the digital insurgent\'s philosophy.', className: 'text-muted-gray' },
+          { content: `Commands needed: ${11 - getUnlockedCommands(sessionCommands).length} remaining`, className: 'text-muted-gray' },
+        ];
+      }
+      
       return [
         { content: '', className: '' },
         { content: `<pre class="text-neon-green">${getFiglet()}</pre>`, className: '' },
@@ -280,6 +348,20 @@ export async function processCommand(input: string, sessionCommands: Set<string>
       ];
 
     case 'tools':
+      if (!hasCompletedPrerequisites(sessionCommands)) {
+        return [
+          { content: '', className: '' },
+          { content: '┌─────────────────────────────────────────────────────┐', className: 'text-soft-red' },
+          { content: '│              TOOLSET ACCESS DENIED                  │', className: 'text-soft-red' },
+          { content: '└─────────────────────────────────────────────────────┘', className: 'text-soft-red' },
+          { content: '', className: '' },
+          { content: '🔒 The arsenal is classified and requires clearance.', className: 'text-warning-yellow' },
+          { content: '', className: '' },
+          { content: 'Complete system exploration to unlock the hacker\'s toolkit.', className: 'text-muted-gray' },
+          { content: `Commands needed: ${11 - getUnlockedCommands(sessionCommands).length} remaining`, className: 'text-muted-gray' },
+        ];
+      }
+      
       return [
         { content: '', className: '' },
         { content: '<span class="text-neon-green">⚡ Mission-Critical Tools</span>', className: '' },
@@ -568,15 +650,22 @@ export async function processCommand(input: string, sessionCommands: Set<string>
       ];
 
     case 'ls':
+      const authenticated = hasCompletedPrerequisites(sessionCommands);
+      const completed = getUnlockedCommands(sessionCommands);
+      
       return [
         { content: '', className: '' },
-        { content: '<span class="text-warning-yellow">total 24</span>', className: '' },
-        { content: '-rw-r--r-- 1 chopp chopp 1337 Dec 08 15:30 <span class="text-terminal-green">manifesto.txt</span>', className: '' },
-        { content: '-rw-r--r-- 1 chopp chopp  892 Dec 08 15:30 <span class="text-terminal-green">tools.txt</span>', className: '' },
-        { content: '-rw-r--r-- 1 chopp chopp  456 Dec 08 15:30 <span class="text-terminal-green">beliefs.txt</span>', className: '' },
+        { content: `<span class="text-warning-yellow">total ${authenticated ? '28' : '24'}</span>`, className: '' },
+        { content: `${authenticated ? '-rw-r--r--' : '----------'} 1 ${authenticated ? 'chopp' : 'root '} ${authenticated ? 'chopp' : 'admin'} 1337 Dec 08 15:30 <span class="${authenticated ? 'text-terminal-green' : 'text-soft-red'}">manifesto.txt</span> ${authenticated ? '' : '🔒'}`, className: '' },
+        { content: `${authenticated ? '-rw-r--r--' : '----------'} 1 ${authenticated ? 'chopp' : 'root '} ${authenticated ? 'chopp' : 'admin'}  892 Dec 08 15:30 <span class="${authenticated ? 'text-terminal-green' : 'text-soft-red'}">tools.txt</span> ${authenticated ? '' : '🔒'}`, className: '' },
+        { content: `${authenticated ? '-rw-r--r--' : '----------'} 1 ${authenticated ? 'chopp' : 'root '} ${authenticated ? 'chopp' : 'admin'}  456 Dec 08 15:30 <span class="${authenticated ? 'text-terminal-green' : 'text-soft-red'}">beliefs.txt</span> ${authenticated ? '' : '🔒'}`, className: '' },
+        { content: '-rw-r--r-- 1 chopp chopp  724 Dec 08 15:30 <span class="text-terminal-green">readme.txt</span>', className: '' },
+        { content: '-rw-r--r-- 1 chopp chopp  542 Dec 08 15:30 <span class="text-terminal-green">version.txt</span>', className: '' },
         { content: 'drwxr-xr-x 2 chopp chopp 4096 Dec 08 15:30 <span class="text-neon-green">exploits/</span>', className: '' },
         { content: 'drwxr-xr-x 2 chopp chopp 4096 Dec 08 15:30 <span class="text-neon-green">projects/</span>', className: '' },
-        { content: '-rwxr-xr-x 1 chopp chopp 2048 Dec 08 15:30 <span class="text-soft-red">hack.sh</span>', className: '' }
+        { content: '-rwxr-xr-x 1 chopp chopp 2048 Dec 08 15:30 <span class="text-soft-red">hack.sh</span>', className: '' },
+        { content: '', className: '' },
+        { content: `<span class="text-muted-gray">Authentication Status: ${authenticated ? 'VERIFIED' : 'GUEST'} | Commands Explored: ${completed.length}/11</span>`, className: '' }
       ];
 
     case 'cat':
@@ -595,10 +684,28 @@ export async function processCommand(input: string, sessionCommands: Set<string>
         ];
       }
       
+      // Check if user has completed prerequisites for locked files
+      const isAuthenticated = hasCompletedPrerequisites(sessionCommands);
+      
       if (fileSystem['~'] && fileSystem['~'][safeFilename]) {
-        return [
-          { content: `<pre class="text-terminal-green">${fileSystem['~'][safeFilename]}</pre>`, className: '' }
-        ];
+        // If file is locked and user isn't authenticated, show locked content
+        if (!isAuthenticated && (safeFilename === 'manifesto.txt' || safeFilename === 'tools.txt' || safeFilename === 'beliefs.txt')) {
+          return [
+            { content: `<pre class="text-soft-red">${fileSystem['~'][safeFilename]}</pre>`, className: '' }
+          ];
+        }
+        // If authenticated and file has unlocked version, show unlocked content
+        else if (isAuthenticated && unlockedFiles[safeFilename]) {
+          return [
+            { content: `<pre class="text-terminal-green">${unlockedFiles[safeFilename]}</pre>`, className: '' }
+          ];
+        }
+        // Show regular file content
+        else {
+          return [
+            { content: `<pre class="text-terminal-green">${fileSystem['~'][safeFilename]}</pre>`, className: '' }
+          ];
+        }
       } else {
         return [
           { content: `<span class="text-soft-red">cat: ${safeFilename}: No such file or directory</span>`, className: '' }
