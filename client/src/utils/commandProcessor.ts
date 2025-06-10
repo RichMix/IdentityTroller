@@ -106,7 +106,9 @@ Welcome back, CHOPP_SUEYY.`
 const ALL_COMMANDS = [
   'help', 'ls', 'pwd', 'cat', 'neofetch', 'htop', 'fortune', 'matrix', 'cowsay', 'cowthink', 'parrot', 'nmap',
   'pwn', 'hack', 'exploit', 'decode', 'figlet', 'toilet', 'lolcat', 'bat', 'exa', 'clear', 'nyancat', 
-  'sl', 'pipes', 'asciiquarium', 'screenfetch', 'btop', 'cmatrix'
+  'sl', 'pipes', 'asciiquarium', 'screenfetch', 'btop', 'cmatrix', 'banner', 'factor', 'yes', 'rev',
+  'snake', 'tetris', 'pong', 'breakout', 'pacman', 'invaders', 'rogue', 'zork', 'hangman', 'nim',
+  'chess', 'blackjack', 'slots', 'dice', 'coinflip', 'magic8', 'riddle', 'maze', 'sudoku', 'life'
 ];
 
 // Generate random 11 commands per session
@@ -158,7 +160,7 @@ function sanitizeInput(input: string): string {
 function isValidCommand(command: string): boolean {
   const allowedCommands = [
     ...ALL_COMMANDS, 
-    'sudo', 'whoami', 'manifesto', 'stack', 'tools', 'beliefs'
+    'sudo', 'whoami', 'manifesto', 'stack', 'tools', 'beliefs', 'games'
   ];
   return allowedCommands.includes(command.toLowerCase());
 }
@@ -203,6 +205,15 @@ export async function processCommand(input: string, sessionCommands: Set<string>
         { content: '  fortune     - Get hacker wisdom', className: 'text-terminal-green' },
         { content: '  lolcat      - Rainbow text effect [text]', className: 'text-terminal-green' },
         { content: '  toilet      - Stylized text banners [text]', className: 'text-terminal-green' },
+        { content: '', className: '' },
+        { content: '<span class="text-warning-yellow">Terminal Games:</span>', className: '' },
+        { content: '  games       - List all available games', className: 'text-terminal-green' },
+        { content: '  snake       - Classic snake game', className: 'text-terminal-green' },
+        { content: '  tetris      - Block-stacking puzzle', className: 'text-terminal-green' },
+        { content: '  hangman     - Word guessing game', className: 'text-terminal-green' },
+        { content: '  blackjack   - Casino card game', className: 'text-terminal-green' },
+        { content: '  dice        - Roll the dice', className: 'text-terminal-green' },
+        { content: '  magic8      - Ask the magic 8-ball', className: 'text-terminal-green' },
         { content: '', className: '' },
         { content: '<span class="text-warning-yellow">Hacker Tools:</span>', className: '' },
         { content: '  nmap        - Network scanner simulation [target]', className: 'text-terminal-green' },
@@ -505,6 +516,448 @@ export async function processCommand(input: string, sessionCommands: Set<string>
       return [
         { content: '<span class="text-neon-green">Digital rain activated...</span>', className: '' },
         { content: '<span class="text-terminal-green">The Matrix has you...</span>', className: '' }
+      ];
+
+    // Terminal Games
+    case 'games':
+      return [
+        { content: '', className: '' },
+        { content: '🎮 <span class="text-neon-green">TERMINAL GAMES ARCADE</span> 🎮', className: '' },
+        { content: '', className: '' },
+        { content: '<span class="text-warning-yellow">Classic Games:</span>', className: '' },
+        { content: '  snake       - Navigate the digital serpent', className: 'text-terminal-green' },
+        { content: '  tetris      - Stack blocks like a pro', className: 'text-terminal-green' },
+        { content: '  pong        - Retro paddle ball game', className: 'text-terminal-green' },
+        { content: '  breakout    - Break through the firewall', className: 'text-terminal-green' },
+        { content: '', className: '' },
+        { content: '<span class="text-warning-yellow">Word & Logic Games:</span>', className: '' },
+        { content: '  hangman     - Guess the hacker term', className: 'text-terminal-green' },
+        { content: '  riddle      - Solve cybersecurity puzzles', className: 'text-terminal-green' },
+        { content: '  sudoku      - Number grid challenge', className: 'text-terminal-green' },
+        { content: '  maze        - Navigate the digital labyrinth', className: 'text-terminal-green' },
+        { content: '', className: '' },
+        { content: '<span class="text-warning-yellow">Casino & Chance:</span>', className: '' },
+        { content: '  blackjack   - Beat the dealer at 21', className: 'text-terminal-green' },
+        { content: '  slots       - Spin the cyber slots', className: 'text-terminal-green' },
+        { content: '  dice        - Roll for digital fortune', className: 'text-terminal-green' },
+        { content: '  coinflip    - Heads or tails binary choice', className: 'text-terminal-green' },
+        { content: '', className: '' },
+        { content: '<span class="text-warning-yellow">Interactive:</span>', className: '' },
+        { content: '  magic8      - Ask the oracle anything', className: 'text-terminal-green' },
+        { content: '  nim         - Strategic stone removal', className: 'text-terminal-green' },
+        { content: '  life        - Conway\'s Game of Life', className: 'text-terminal-green' },
+        { content: '', className: '' },
+        { content: '<span class="text-muted-gray">Type any game name to start playing!</span>', className: '' },
+      ];
+
+    case 'snake':
+      return [
+        { content: '', className: '' },
+        { content: '🐍 <span class="text-neon-green">CYBER SNAKE</span> 🐍', className: '' },
+        { content: '', className: '' },
+        { content: '┌────────────────────────────────────┐', className: 'text-terminal-green' },
+        { content: '│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │', className: 'text-terminal-green' },
+        { content: '│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │', className: 'text-terminal-green' },
+        { content: '│ ░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░░░░ │', className: 'text-terminal-green' },
+        { content: '│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │', className: 'text-terminal-green' },
+        { content: '│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │', className: 'text-terminal-green' },
+        { content: '│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │', className: 'text-terminal-green' },
+        { content: '│ ░░░░░░░░░░░██████░░░░░░░░░░░░░░░░░ │', className: 'text-terminal-green' },
+        { content: '│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │', className: 'text-terminal-green' },
+        { content: '│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │', className: 'text-terminal-green' },
+        { content: '│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │', className: 'text-terminal-green' },
+        { content: '└────────────────────────────────────┘', className: 'text-terminal-green' },
+        { content: '', className: '' },
+        { content: 'Score: 0 | Length: 3', className: 'text-warning-yellow' },
+        { content: 'Use WASD keys to control the snake!', className: 'text-muted-gray' },
+        { content: 'Eat the food (█) to grow and score points.', className: 'text-muted-gray' },
+      ];
+
+    case 'tetris':
+      return [
+        { content: '', className: '' },
+        { content: '🧱 <span class="text-neon-green">CYBER TETRIS</span> 🧱', className: '' },
+        { content: '', className: '' },
+        { content: '┌──────────┐  ┌─────┐', className: 'text-terminal-green' },
+        { content: '│          │  │ ██  │', className: 'text-terminal-green' },
+        { content: '│          │  │ ██  │', className: 'text-terminal-green' },
+        { content: '│          │  └─────┘', className: 'text-terminal-green' },
+        { content: '│          │', className: 'text-terminal-green' },
+        { content: '│          │  Score:', className: 'text-terminal-green' },
+        { content: '│    ██    │  0', className: 'text-terminal-green' },
+        { content: '│    ██    │', className: 'text-terminal-green' },
+        { content: '│          │  Level:', className: 'text-terminal-green' },
+        { content: '│          │  1', className: 'text-terminal-green' },
+        { content: '│          │', className: 'text-terminal-green' },
+        { content: '│          │  Lines:', className: 'text-terminal-green' },
+        { content: '│          │  0', className: 'text-terminal-green' },
+        { content: '│██████████│', className: 'text-terminal-green' },
+        { content: '│██████████│', className: 'text-terminal-green' },
+        { content: '└──────────┘', className: 'text-terminal-green' },
+        { content: '', className: '' },
+        { content: 'Controls: A/D rotate, S drop, Arrow keys move', className: 'text-muted-gray' },
+        { content: 'Clear lines to score points!', className: 'text-muted-gray' },
+      ];
+
+    case 'hangman':
+      const words = ['FIREWALL', 'ENCRYPTION', 'MALWARE', 'PHISHING', 'BACKDOOR', 'TROJAN', 'ROOTKIT', 'EXPLOIT', 'PAYLOAD', 'BOTNET'];
+      const word = words[Math.floor(Math.random() * words.length)];
+      const display = word.split('').map(() => '_').join(' ');
+      return [
+        { content: '', className: '' },
+        { content: '🎯 <span class="text-neon-green">CYBER HANGMAN</span> 🎯', className: '' },
+        { content: '', className: '' },
+        { content: '  ┌───┐', className: 'text-terminal-green' },
+        { content: '  │   │', className: 'text-terminal-green' },
+        { content: '  │    ', className: 'text-terminal-green' },
+        { content: '  │    ', className: 'text-terminal-green' },
+        { content: '  │    ', className: 'text-terminal-green' },
+        { content: '  │    ', className: 'text-terminal-green' },
+        { content: '──┴──  ', className: 'text-terminal-green' },
+        { content: '', className: '' },
+        { content: `Word: ${display}`, className: 'text-warning-yellow' },
+        { content: 'Wrong guesses: 0/6', className: 'text-soft-red' },
+        { content: 'Guessed letters: []', className: 'text-muted-gray' },
+        { content: '', className: '' },
+        { content: 'Guess cybersecurity terms to save the hacker!', className: 'text-muted-gray' },
+        { content: 'Type letters to guess the word.', className: 'text-muted-gray' },
+      ];
+
+    case 'blackjack':
+      const dealerCard = Math.floor(Math.random() * 10) + 1;
+      const playerCard1 = Math.floor(Math.random() * 10) + 1;
+      const playerCard2 = Math.floor(Math.random() * 10) + 1;
+      const playerTotal = playerCard1 + playerCard2;
+      return [
+        { content: '', className: '' },
+        { content: '♠️ <span class="text-neon-green">CYBER BLACKJACK</span> ♠️', className: '' },
+        { content: '', className: '' },
+        { content: 'Dealer:', className: 'text-warning-yellow' },
+        { content: `┌─────┐ ┌─────┐`, className: 'text-terminal-green' },
+        { content: `│  ${dealerCard}  │ │ ??? │`, className: 'text-terminal-green' },
+        { content: `│  ♠  │ │  ?  │`, className: 'text-terminal-green' },
+        { content: `│  ${dealerCard}  │ │ ??? │`, className: 'text-terminal-green' },
+        { content: `└─────┘ └─────┘`, className: 'text-terminal-green' },
+        { content: `Showing: ${dealerCard}`, className: 'text-muted-gray' },
+        { content: '', className: '' },
+        { content: 'Player:', className: 'text-warning-yellow' },
+        { content: `┌─────┐ ┌─────┐`, className: 'text-terminal-green' },
+        { content: `│  ${playerCard1}  │ │  ${playerCard2}  │`, className: 'text-terminal-green' },
+        { content: `│  ♥  │ │  ♦  │`, className: 'text-terminal-green' },
+        { content: `│  ${playerCard1}  │ │  ${playerCard2}  │`, className: 'text-terminal-green' },
+        { content: `└─────┘ └─────┘`, className: 'text-terminal-green' },
+        { content: `Total: ${playerTotal}`, className: 'text-warning-yellow' },
+        { content: '', className: '' },
+        { content: playerTotal === 21 ? '🎉 BLACKJACK! You win!' : 'Type "hit" for another card or "stand" to hold.', className: playerTotal === 21 ? 'text-neon-green' : 'text-muted-gray' },
+      ];
+
+    case 'dice':
+      const dice1 = Math.floor(Math.random() * 6) + 1;
+      const dice2 = Math.floor(Math.random() * 6) + 1;
+      const total = dice1 + dice2;
+      const diceArt: Record<number, string[]> = {
+        1: ['┌─────┐', '│     │', '│  ●  │', '│     │', '└─────┘'],
+        2: ['┌─────┐', '│ ●   │', '│     │', '│   ● │', '└─────┘'],
+        3: ['┌─────┐', '│ ●   │', '│  ●  │', '│   ● │', '└─────┘'],
+        4: ['┌─────┐', '│ ● ● │', '│     │', '│ ● ● │', '└─────┘'],
+        5: ['┌─────┐', '│ ● ● │', '│  ●  │', '│ ● ● │', '└─────┘'],
+        6: ['┌─────┐', '│ ● ● │', '│ ● ● │', '│ ● ● │', '└─────┘']
+      };
+      return [
+        { content: '', className: '' },
+        { content: '🎲 <span class="text-neon-green">CYBER DICE</span> 🎲', className: '' },
+        { content: '', className: '' },
+        { content: 'Rolling the dice...', className: 'text-warning-yellow' },
+        { content: '', className: '' },
+        { content: `${diceArt[dice1][0]}  ${diceArt[dice2][0]}`, className: 'text-terminal-green' },
+        { content: `${diceArt[dice1][1]}  ${diceArt[dice2][1]}`, className: 'text-terminal-green' },
+        { content: `${diceArt[dice1][2]}  ${diceArt[dice2][2]}`, className: 'text-terminal-green' },
+        { content: `${diceArt[dice1][3]}  ${diceArt[dice2][3]}`, className: 'text-terminal-green' },
+        { content: `${diceArt[dice1][4]}  ${diceArt[dice2][4]}`, className: 'text-terminal-green' },
+        { content: '', className: '' },
+        { content: `Dice 1: ${dice1} | Dice 2: ${dice2} | Total: ${total}`, className: 'text-warning-yellow' },
+        { content: total === 7 ? '🎉 Lucky seven!' : total === 12 ? '🎯 Snake eyes!' : total >= 10 ? '✨ High roll!' : '💭 Better luck next time!', className: 'text-neon-green' },
+      ];
+
+    case 'coinflip':
+      const flip = Math.random() < 0.5 ? 'HEADS' : 'TAILS';
+      return [
+        { content: '', className: '' },
+        { content: '🪙 <span class="text-neon-green">CYBER COIN FLIP</span> 🪙', className: '' },
+        { content: '', className: '' },
+        { content: 'Flipping coin...', className: 'text-warning-yellow' },
+        { content: '', className: '' },
+        { content: flip === 'HEADS' ? '     ┌─────────┐' : '     ┌─────────┐', className: 'text-terminal-green' },
+        { content: flip === 'HEADS' ? '    ╱           ╲' : '    ╱           ╲', className: 'text-terminal-green' },
+        { content: flip === 'HEADS' ? '   │    HEADS    │' : '   │    TAILS    │', className: 'text-terminal-green' },
+        { content: flip === 'HEADS' ? '   │      👑      │' : '   │      🦅      │', className: 'text-terminal-green' },
+        { content: flip === 'HEADS' ? '    ╲           ╱' : '    ╲           ╱', className: 'text-terminal-green' },
+        { content: flip === 'HEADS' ? '     └─────────┘' : '     └─────────┘', className: 'text-terminal-green' },
+        { content: '', className: '' },
+        { content: `Result: ${flip}`, className: 'text-warning-yellow' },
+        { content: 'The binary choice has been made!', className: 'text-muted-gray' },
+      ];
+
+    case 'magic8':
+      const responses = [
+        'It is certain', 'Without a doubt', 'Yes definitely', 'You may rely on it',
+        'As I see it, yes', 'Most likely', 'Outlook good', 'Yes', 'Signs point to yes',
+        'Reply hazy, try again', 'Ask again later', 'Better not tell you now',
+        'Cannot predict now', 'Concentrate and ask again',
+        'Don\'t count on it', 'My reply is no', 'My sources say no',
+        'Outlook not so good', 'Very doubtful'
+      ];
+      const response = responses[Math.floor(Math.random() * responses.length)];
+      return [
+        { content: '', className: '' },
+        { content: '🔮 <span class="text-neon-green">CYBER MAGIC 8-BALL</span> 🔮', className: '' },
+        { content: '', className: '' },
+        { content: '        ╭─────────────╮', className: 'text-terminal-green' },
+        { content: '      ╱               ╲', className: 'text-terminal-green' },
+        { content: '     ╱                 ╲', className: 'text-terminal-green' },
+        { content: '    │     ┌─────────┐   │', className: 'text-terminal-green' },
+        { content: '    │     │    8    │   │', className: 'text-terminal-green' },
+        { content: '    │     └─────────┘   │', className: 'text-terminal-green' },
+        { content: '     ╲                 ╱', className: 'text-terminal-green' },
+        { content: '      ╲               ╱', className: 'text-terminal-green' },
+        { content: '        ╰─────────────╯', className: 'text-terminal-green' },
+        { content: '', className: '' },
+        { content: '🔮 The oracle speaks:', className: 'text-warning-yellow' },
+        { content: `"${response}"`, className: 'text-neon-green' },
+        { content: '', className: '' },
+        { content: 'Ask another question anytime!', className: 'text-muted-gray' },
+      ];
+
+    case 'riddle':
+      const riddles = [
+        { q: 'I protect your data but can be cracked, what am I?', a: 'Password' },
+        { q: 'I hide your identity while browsing the net, what am I?', a: 'VPN' },
+        { q: 'I encrypt data but need a key, what am I?', a: 'Cipher' },
+        { q: 'I detect threats but can be bypassed, what am I?', a: 'Firewall' },
+        { q: 'I verify you are who you claim to be, what am I?', a: 'Authentication' }
+      ];
+      const riddle = riddles[Math.floor(Math.random() * riddles.length)];
+      return [
+        { content: '', className: '' },
+        { content: '🧩 <span class="text-neon-green">CYBER RIDDLE</span> 🧩', className: '' },
+        { content: '', className: '' },
+        { content: '🤔 Riddle me this:', className: 'text-warning-yellow' },
+        { content: '', className: '' },
+        { content: `"${riddle.q}"`, className: 'text-terminal-green' },
+        { content: '', className: '' },
+        { content: 'Type your answer to check if you\'re correct!', className: 'text-muted-gray' },
+        { content: '(Hint: It\'s a cybersecurity term)', className: 'text-muted-gray' },
+      ];
+
+    case 'slots':
+      const symbols = ['🍒', '🍋', '⭐', '💎', '🔔', '💰', '⚡', '🎯'];
+      const reel1 = symbols[Math.floor(Math.random() * symbols.length)];
+      const reel2 = symbols[Math.floor(Math.random() * symbols.length)];
+      const reel3 = symbols[Math.floor(Math.random() * symbols.length)];
+      const isWin = reel1 === reel2 && reel2 === reel3;
+      const isPartial = reel1 === reel2 || reel2 === reel3 || reel1 === reel3;
+      return [
+        { content: '', className: '' },
+        { content: '🎰 <span class="text-neon-green">CYBER SLOTS</span> 🎰', className: '' },
+        { content: '', className: '' },
+        { content: '┌─────┬─────┬─────┐', className: 'text-terminal-green' },
+        { content: '│     │     │     │', className: 'text-terminal-green' },
+        { content: `│  ${reel1}  │  ${reel2}  │  ${reel3}  │`, className: 'text-terminal-green' },
+        { content: '│     │     │     │', className: 'text-terminal-green' },
+        { content: '└─────┴─────┴─────┘', className: 'text-terminal-green' },
+        { content: '', className: '' },
+        { content: isWin ? '🎉 JACKPOT! Triple match!' : isPartial ? '⚡ Partial match!' : '💔 No match, try again!', className: isWin ? 'text-neon-green' : isPartial ? 'text-warning-yellow' : 'text-soft-red' },
+        { content: isWin ? 'Payout: 1000 credits!' : isPartial ? 'Payout: 50 credits!' : 'Better luck next time!', className: 'text-muted-gray' },
+      ];
+
+    case 'maze':
+      return [
+        { content: '', className: '' },
+        { content: '🗺️ <span class="text-neon-green">DIGITAL MAZE</span> 🗺️', className: '' },
+        { content: '', className: '' },
+        { content: '┌─────────────────────────────────────┐', className: 'text-terminal-green' },
+        { content: '│S█ █   █   █       █   █   █       E│', className: 'text-terminal-green' },
+        { content: '│ █ █ █ █ █ █ █████ █ █ █ █ █ █████ █│', className: 'text-terminal-green' },
+        { content: '│   █   █   █       █   █   █       █│', className: 'text-terminal-green' },
+        { content: '│ █████████████████████████████████ █│', className: 'text-terminal-green' },
+        { content: '│   █       █       █       █       █│', className: 'text-terminal-green' },
+        { content: '│ █ █ █████ █ █████ █ █████ █ █████ █│', className: 'text-terminal-green' },
+        { content: '│ █   █     █   █   █   █   █   █   █│', className: 'text-terminal-green' },
+        { content: '│ █████ █████ █ █ █████ █ █████ █ ███│', className: 'text-terminal-green' },
+        { content: '│       █     █   █     █       █   █│', className: 'text-terminal-green' },
+        { content: '└─────────────────────────────────────┘', className: 'text-terminal-green' },
+        { content: '', className: '' },
+        { content: 'Navigate from S (Start) to E (Exit)', className: 'text-warning-yellow' },
+        { content: 'Use WASD keys to move through the maze!', className: 'text-muted-gray' },
+      ];
+
+    case 'pong':
+      return [
+        { content: '', className: '' },
+        { content: '🏓 <span class="text-neon-green">CYBER PONG</span> 🏓', className: '' },
+        { content: '', className: '' },
+        { content: '┌────────────────────────────────────┐', className: 'text-terminal-green' },
+        { content: '│ ●                               ║  │', className: 'text-terminal-green' },
+        { content: '│                                 ║  │', className: 'text-terminal-green' },
+        { content: '│                                 ║  │', className: 'text-terminal-green' },
+        { content: '│                                 ║  │', className: 'text-terminal-green' },
+        { content: '│                                 ║  │', className: 'text-terminal-green' },
+        { content: '│                                 ║  │', className: 'text-terminal-green' },
+        { content: '│                                 ║  │', className: 'text-terminal-green' },
+        { content: '│  ║                              ║  │', className: 'text-terminal-green' },
+        { content: '│  ║                              ║  │', className: 'text-terminal-green' },
+        { content: '│  ║                              ║  │', className: 'text-terminal-green' },
+        { content: '└────────────────────────────────────┘', className: 'text-terminal-green' },
+        { content: '', className: '' },
+        { content: 'Player 1: 0 | Player 2: 0', className: 'text-warning-yellow' },
+        { content: 'Use W/S keys to move your paddle!', className: 'text-muted-gray' },
+      ];
+
+    case 'breakout':
+      return [
+        { content: '', className: '' },
+        { content: '🧱 <span class="text-neon-green">CYBER BREAKOUT</span> 🧱', className: '' },
+        { content: '', className: '' },
+        { content: '┌────────────────────────────────────┐', className: 'text-terminal-green' },
+        { content: '│████████████████████████████████████│', className: 'text-terminal-green' },
+        { content: '│████████████████████████████████████│', className: 'text-terminal-green' },
+        { content: '│████████████████████████████████████│', className: 'text-terminal-green' },
+        { content: '│                                    │', className: 'text-terminal-green' },
+        { content: '│                                    │', className: 'text-terminal-green' },
+        { content: '│               ●                    │', className: 'text-terminal-green' },
+        { content: '│                                    │', className: 'text-terminal-green' },
+        { content: '│                                    │', className: 'text-terminal-green' },
+        { content: '│                                    │', className: 'text-terminal-green' },
+        { content: '│            ═══════                 │', className: 'text-terminal-green' },
+        { content: '└────────────────────────────────────┘', className: 'text-terminal-green' },
+        { content: '', className: '' },
+        { content: 'Score: 0 | Lives: 3 | Blocks: 96', className: 'text-warning-yellow' },
+        { content: 'Use A/D keys to move the paddle!', className: 'text-muted-gray' },
+        { content: 'Break through the firewall!', className: 'text-muted-gray' },
+      ];
+
+    case 'nim':
+      const piles = [7, 5, 3];
+      return [
+        { content: '', className: '' },
+        { content: '🪨 <span class="text-neon-green">DIGITAL NIM</span> 🪨', className: '' },
+        { content: '', className: '' },
+        { content: 'Strategic stone removal game', className: 'text-warning-yellow' },
+        { content: '', className: '' },
+        { content: 'Pile 1: ● ● ● ● ● ● ●', className: 'text-terminal-green' },
+        { content: 'Pile 2: ● ● ● ● ●', className: 'text-terminal-green' },
+        { content: 'Pile 3: ● ● ●', className: 'text-terminal-green' },
+        { content: '', className: '' },
+        { content: 'Rules:', className: 'text-warning-yellow' },
+        { content: '• Take any number of stones from a single pile', className: 'text-muted-gray' },
+        { content: '• Player who takes the last stone loses!', className: 'text-muted-gray' },
+        { content: '• Type "nim 1 3" to take 3 stones from pile 1', className: 'text-muted-gray' },
+      ];
+
+    case 'life':
+      const pattern = [
+        '░░░░░░░░░░░░░░░░░░░░',
+        '░░░░░░░░░░░░░░░░░░░░',
+        '░░░░░██░░░░░░░░░░░░░',
+        '░░░░██░░░░░░░░░░░░░░',
+        '░░░░░██░░░░░░░░░░░░░',
+        '░░░░░░░░░░░░░░░░░░░░',
+        '░░░░░░░░░░░░░░░░░░░░',
+        '░░░░░░░░░██░░░░░░░░░',
+        '░░░░░░░██░█░░░░░░░░░',
+        '░░░░░░░░░██░░░░░░░░░',
+        '░░░░░░░░░░░░░░░░░░░░',
+        '░░░░░░░░░░░░░░░░░░░░',
+      ];
+      return [
+        { content: '', className: '' },
+        { content: '🧬 <span class="text-neon-green">CONWAY\'S GAME OF LIFE</span> 🧬', className: '' },
+        { content: '', className: '' },
+        { content: 'Generation: 0', className: 'text-warning-yellow' },
+        { content: '', className: '' },
+        ...pattern.map(line => ({ content: line, className: 'text-terminal-green' })),
+        { content: '', className: '' },
+        { content: 'Cellular automaton simulation', className: 'text-muted-gray' },
+        { content: 'Watch life evolve according to simple rules!', className: 'text-muted-gray' },
+      ];
+
+    case 'sudoku':
+      const sudokuGrid = [
+        '5 3 _ | _ 7 _ | _ _ _',
+        '6 _ _ | 1 9 5 | _ _ _',
+        '_ 9 8 | _ _ _ | _ 6 _',
+        '------+-------+------',
+        '8 _ _ | _ 6 _ | _ _ 3',
+        '4 _ _ | 8 _ 3 | _ _ 1',
+        '7 _ _ | _ 2 _ | _ _ 6',
+        '------+-------+------',
+        '_ 6 _ | _ _ _ | 2 8 _',
+        '_ _ _ | 4 1 9 | _ _ 5',
+        '_ _ _ | _ 8 _ | _ 7 9'
+      ];
+      return [
+        { content: '', className: '' },
+        { content: '🔢 <span class="text-neon-green">CYBER SUDOKU</span> 🔢', className: '' },
+        { content: '', className: '' },
+        ...sudokuGrid.map(line => ({ content: line, className: 'text-terminal-green' })),
+        { content: '', className: '' },
+        { content: 'Fill the grid with digits 1-9', className: 'text-warning-yellow' },
+        { content: 'Each row, column, and 3x3 box must contain all digits!', className: 'text-muted-gray' },
+      ];
+
+    case 'factor':
+      const originalNum = Math.floor(Math.random() * 900) + 100;
+      let num = originalNum;
+      const factors = [];
+      for (let i = 2; i <= num; i++) {
+        while (num % i === 0) {
+          factors.push(i);
+          num = Math.floor(num / i);
+        }
+      }
+      return [
+        { content: '', className: '' },
+        { content: '🔢 <span class="text-neon-green">PRIME FACTORIZATION</span> 🔢', className: '' },
+        { content: '', className: '' },
+        { content: `Number: ${originalNum}`, className: 'text-warning-yellow' },
+        { content: `Prime factors: ${factors.join(' × ')}`, className: 'text-terminal-green' },
+        { content: '', className: '' },
+        { content: 'Breaking numbers down to their prime components!', className: 'text-muted-gray' },
+      ];
+
+    case 'banner':
+      const bannerText = params.join(' ') || 'HACKER';
+      return [
+        { content: '', className: '' },
+        { content: '🏴 <span class="text-neon-green">DIGITAL BANNER</span> 🏴', className: '' },
+        { content: '', className: '' },
+        { content: `<pre class="text-warning-yellow">${getFiglet(bannerText)}</pre>`, className: '' },
+      ];
+
+    case 'yes':
+      return [
+        { content: '', className: '' },
+        { content: '⚡ <span class="text-neon-green">INFINITE YES</span> ⚡', className: '' },
+        { content: '', className: '' },
+        { content: 'y', className: 'text-terminal-green' },
+        { content: 'y', className: 'text-terminal-green' },
+        { content: 'y', className: 'text-terminal-green' },
+        { content: 'y', className: 'text-terminal-green' },
+        { content: 'y', className: 'text-terminal-green' },
+        { content: '...', className: 'text-muted-gray' },
+        { content: 'Infinite stream of "y" (interrupted for sanity)', className: 'text-muted-gray' },
+      ];
+
+    case 'rev':
+      const textToReverse = params.join(' ') || 'CYBER HACKER';
+      return [
+        { content: '', className: '' },
+        { content: '🔄 <span class="text-neon-green">TEXT REVERSER</span> 🔄', className: '' },
+        { content: '', className: '' },
+        { content: `Original: ${textToReverse}`, className: 'text-warning-yellow' },
+        { content: `Reversed: ${textToReverse.split('').reverse().join('')}`, className: 'text-terminal-green' },
+        { content: '', className: '' },
+        { content: 'Mirror mirror on the wall...', className: 'text-muted-gray' },
       ];
 
     case 'figlet':
