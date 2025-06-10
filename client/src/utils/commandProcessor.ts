@@ -388,6 +388,20 @@ export async function processCommand(input: string, sessionCommands: Set<string>
       ];
 
     case 'beliefs':
+      if (!hasCompletedPrerequisites(sessionCommands)) {
+        return [
+          { content: '', className: '' },
+          { content: '┌─────────────────────────────────────────────────────┐', className: 'text-soft-red' },
+          { content: '│              PHILOSOPHY ACCESS DENIED               │', className: 'text-soft-red' },
+          { content: '└─────────────────────────────────────────────────────┘', className: 'text-soft-red' },
+          { content: '', className: '' },
+          { content: '🔒 Core beliefs are protected and require verification.', className: 'text-warning-yellow' },
+          { content: '', className: '' },
+          { content: 'Complete system exploration to unlock the hacker\'s principles.', className: 'text-muted-gray' },
+          { content: `Commands needed: ${11 - getUnlockedCommands(sessionCommands).length} remaining`, className: 'text-muted-gray' },
+        ];
+      }
+      
       return [
         { content: '', className: '' },
         { content: '<span class="text-neon-green">🔥 Guiding Principles</span>', className: '' },
