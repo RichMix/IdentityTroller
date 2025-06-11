@@ -102,18 +102,18 @@ System Status: All files and functions unlocked.
 Welcome back, CHOPP_SUEYY.`
 };
 
-// All available commands for random selection
-const ALL_COMMANDS = [
-  'help', 'ls', 'pwd', 'cat', 'neofetch', 'htop', 'fortune', 'matrix', 'cowsay', 'cowthink', 'parrot', 'nmap',
-  'pwn', 'hack', 'exploit', 'decode', 'figlet', 'toilet', 'lolcat', 'bat', 'exa', 'clear', 'nyancat', 
-  'sl', 'pipes', 'asciiquarium', 'screenfetch', 'btop', 'cmatrix', 'banner', 'factor', 'yes', 'rev',
-  'snake', 'tetris', 'pong', 'breakout', 'pacman', 'invaders', 'rogue', 'zork', 'hangman', 'nim',
-  'chess', 'blackjack', 'slots', 'dice', 'coinflip', 'magic8', 'riddle', 'maze', 'sudoku', 'life'
+// Fun commands only for random selection (excluding basic navigation)
+const FUN_COMMANDS = [
+  'neofetch', 'fortune', 'matrix', 'cowsay', 'cowthink', 'parrot', 'nmap',
+  'figlet', 'toilet', 'lolcat', 'nyancat', 'sl', 'pipes', 'asciiquarium', 
+  'cmatrix', 'banner', 'factor', 'yes', 'rev', 'games',
+  'snake', 'tetris', 'pong', 'breakout', 'hangman', 'nim',
+  'blackjack', 'slots', 'dice', 'coinflip', 'magic8', 'riddle', 'maze', 'sudoku', 'life'
 ];
 
 // Generate random 11 commands per session
 function generateRandomRequiredCommands(): string[] {
-  const shuffled = [...ALL_COMMANDS].sort(() => Math.random() - 0.5);
+  const shuffled = [...FUN_COMMANDS].sort(() => Math.random() - 0.5);
   return shuffled.slice(0, 11);
 }
 
@@ -159,8 +159,8 @@ function sanitizeInput(input: string): string {
 // Security: Validate command against whitelist
 function isValidCommand(command: string): boolean {
   const allowedCommands = [
-    ...ALL_COMMANDS, 
-    'sudo', 'whoami', 'manifesto', 'stack', 'tools', 'beliefs', 'games'
+    ...FUN_COMMANDS, 
+    'help', 'ls', 'pwd', 'cat', 'clear', 'sudo', 'whoami', 'manifesto', 'stack', 'tools', 'beliefs', 'games'
   ];
   return allowedCommands.includes(command.toLowerCase());
 }
@@ -968,7 +968,19 @@ export async function processCommand(input: string, sessionCommands: Set<string>
 
     case 'parrot':
       return [
-        { content: getParrot(), className: '' }
+        { content: '', className: '' },
+        { content: '<div class="text-neon-green">', className: '' },
+        { content: '                 🦜 PARTY PARROT ACTIVATED! 🦜', className: 'text-neon-green' },
+        { content: '                 ████████████████████████████████', className: 'text-warning-yellow' },
+        { content: '                 ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██', className: 'text-warning-yellow' },
+        { content: '                 ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██', className: 'text-warning-yellow' },
+        { content: '                 ██▒▒▒███████████▒▒▒▒▒██▒▒▒▒▒▒▒▒██▒▒▒▒▒██', className: 'text-warning-yellow' },
+        { content: '                 █▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█▒▒▒▒▒▒████████▒▒▒▒▒▒▒██', className: 'text-warning-yellow' },
+        { content: '                 ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒█▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██', className: 'text-warning-yellow' },
+        { content: '                 ░█▒▒▒███████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██', className: 'text-warning-yellow' },
+        { content: '                 ░██▒▒▒▒▒▒▒▒▒▒████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█', className: 'text-warning-yellow' },
+        { content: '                 ░░████████████░░░█████████████████', className: 'text-warning-yellow' },
+        { content: '</div>', className: '' }
       ];
 
     case 'matrix':
