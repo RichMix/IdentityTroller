@@ -447,22 +447,72 @@ export async function processCommand(input: string, sessionCommands: Set<string>
 
     case 'nyancat':
       return [
-        { content: getNyancat(), className: '' }
+        { content: '', className: '' },
+        { content: '🌈 NYAN CAT ACTIVATED! 🌈', className: 'text-neon-green' },
+        { content: '', className: '' },
+        { content: '         +      o     +              o   ', className: 'text-rainbow' },
+        { content: '    +             o     +       +', className: 'text-rainbow' },
+        { content: 'o          +', className: 'text-rainbow' },
+        { content: '    o  +           +        +', className: 'text-rainbow' },
+        { content: '+        o     o       +        o', className: 'text-rainbow' },
+        { content: '-_-_-_-_-_-_-_,------,      o ', className: 'text-terminal-green' },
+        { content: '_-_-_-_-_-_-_-|   /\\_/\\  ', className: 'text-terminal-green' },
+        { content: '-_-_-_-_-_-_-~|__( ^ .^)  +     +  ', className: 'text-terminal-green' },
+        { content: '_-_-_-_-_-_-_-_-_-\\ ___ ', className: 'text-terminal-green' },
+        { content: '-_-_-_-_-_-_-____/     ', className: 'text-terminal-green' },
+        { content: '', className: '' },
+        { content: 'NYAN NYAN NYAN NYAN!', className: 'text-warning-yellow' },
       ];
 
     case 'sl':
       return [
-        { content: getSteamLocomotive(), className: '' }
+        { content: '', className: '' },
+        { content: '🚂 STEAM LOCOMOTIVE INCOMING! 🚂', className: 'text-neon-green' },
+        { content: '', className: '' },
+        { content: '                    (  ) (@@) ( )  (@)  ()    @@    O     @', className: 'text-terminal-green' },
+        { content: '               (@@@)', className: 'text-terminal-green' },
+        { content: '            (    )', className: 'text-terminal-green' },
+        { content: '         ( @@@@@ )', className: 'text-terminal-green' },
+        { content: '      ( @@@@@@@@@@ )', className: 'text-terminal-green' },
+        { content: '   ====  @@@@@@@@@@@ )', className: 'text-terminal-green' },
+        { content: '_/ ===  ===  ===  ===  === \\_', className: 'text-terminal-green' },
+        { content: 'O   O   O   O   O   O   O   O', className: 'text-terminal-green' },
+        { content: '', className: '' },
+        { content: 'CHOO CHOO! All aboard the hacker train!', className: 'text-warning-yellow' },
       ];
 
     case 'pipes':
       return [
-        { content: getPipes(), className: '' }
+        { content: '', className: '' },
+        { content: '🔧 PIPE SYSTEM ACTIVATED! 🔧', className: 'text-neon-green' },
+        { content: '', className: '' },
+        { content: '┌─┬─┐ ┌─┐ ┌─┬─┐ ┌─┬─┐', className: 'text-terminal-green' },
+        { content: '│ │ │ │ │ │ │ │ │ │ │', className: 'text-terminal-green' },
+        { content: '├─┤ └─┼─┘ ├─┤ └─┼─┤ │', className: 'text-terminal-green' },
+        { content: '│ │   │   │ │   │ │ │', className: 'text-terminal-green' },
+        { content: '│ └─┬─┘   │ └─┬─┘ │ │', className: 'text-terminal-green' },
+        { content: '│   │     │   │   │ │', className: 'text-terminal-green' },
+        { content: '└───┘     └───┘   └─┘', className: 'text-terminal-green' },
+        { content: '', className: '' },
+        { content: 'Data flowing through the digital pipelines!', className: 'text-warning-yellow' },
       ];
 
     case 'asciiquarium':
       return [
-        { content: getAsciiAquarium(), className: '' }
+        { content: '', className: '' },
+        { content: '🐠 DIGITAL AQUARIUM ACTIVATED! 🐠', className: 'text-neon-green' },
+        { content: '', className: '' },
+        { content: '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~', className: 'text-terminal-green' },
+        { content: '     🐟        🐠      🐡        🦈', className: 'text-terminal-green' },
+        { content: '  ><(((º>   <º)))><   °<)))><   ><((((°>', className: 'text-terminal-green' },
+        { content: '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~', className: 'text-terminal-green' },
+        { content: '🌊     🐢         🦑       🐙     🌊', className: 'text-terminal-green' },
+        { content: '  o-°-o       ~( )~     °)))°<    ', className: 'text-terminal-green' },
+        { content: '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~', className: 'text-terminal-green' },
+        { content: '🪸      🐚       🦀        🌿    🪸', className: 'text-terminal-green' },
+        { content: '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~', className: 'text-terminal-green' },
+        { content: '', className: '' },
+        { content: 'Welcome to the cyber ocean depths!', className: 'text-warning-yellow' },
       ];
 
     case 'lolcat':
@@ -551,16 +601,18 @@ export async function processCommand(input: string, sessionCommands: Set<string>
       ];
 
     case 'snake':
+      const snakeScore = Math.floor(Math.random() * 500);
+      const snakeLength = Math.floor(snakeScore / 50) + 3;
       return [
         { content: '', className: '' },
-        { content: '🐍 <span class="text-neon-green">CYBER SNAKE</span> 🐍', className: '' },
+        { content: '🐍 <span class="text-neon-green">CYBER SNAKE - INTERACTIVE MODE</span> 🐍', className: '' },
         { content: '', className: '' },
         { content: '┌────────────────────────────────────┐', className: 'text-terminal-green' },
         { content: '│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │', className: 'text-terminal-green' },
         { content: '│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │', className: 'text-terminal-green' },
+        { content: '│ ░░░░░░░░░░░░░░▲░░░░░░░░░░░░░░░░░░░ │', className: 'text-terminal-green' },
         { content: '│ ░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░░░░ │', className: 'text-terminal-green' },
-        { content: '│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │', className: 'text-terminal-green' },
-        { content: '│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │', className: 'text-terminal-green' },
+        { content: '│ ░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░░░░ │', className: 'text-terminal-green' },
         { content: '│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │', className: 'text-terminal-green' },
         { content: '│ ░░░░░░░░░░░██████░░░░░░░░░░░░░░░░░ │', className: 'text-terminal-green' },
         { content: '│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │', className: 'text-terminal-green' },
@@ -568,59 +620,71 @@ export async function processCommand(input: string, sessionCommands: Set<string>
         { content: '│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │', className: 'text-terminal-green' },
         { content: '└────────────────────────────────────┘', className: 'text-terminal-green' },
         { content: '', className: '' },
-        { content: 'Score: 0 | Length: 3', className: 'text-warning-yellow' },
-        { content: 'Use WASD keys to control the snake!', className: 'text-muted-gray' },
-        { content: 'Eat the food (█) to grow and score points.', className: 'text-muted-gray' },
+        { content: `Score: ${snakeScore} | Length: ${snakeLength} | Level: ${Math.floor(snakeScore / 100) + 1}`, className: 'text-warning-yellow' },
+        { content: '🎮 GAME ACTIVE - Use WASD to control!', className: 'text-neon-green' },
+        { content: 'Snake moving UP ▲ - Eat food to grow!', className: 'text-muted-gray' },
+        { content: 'Type "snake restart" to play again.', className: 'text-muted-gray' },
       ];
 
     case 'tetris':
+      const tetrisScore = Math.floor(Math.random() * 10000);
+      const tetrisLevel = Math.floor(tetrisScore / 1000) + 1;
+      const tetrisLines = Math.floor(tetrisScore / 100);
       return [
         { content: '', className: '' },
-        { content: '🧱 <span class="text-neon-green">CYBER TETRIS</span> 🧱', className: '' },
+        { content: '🧱 <span class="text-neon-green">CYBER TETRIS - ACTIVE GAME</span> 🧱', className: '' },
         { content: '', className: '' },
         { content: '┌──────────┐  ┌─────┐', className: 'text-terminal-green' },
-        { content: '│          │  │ ██  │', className: 'text-terminal-green' },
-        { content: '│          │  │ ██  │', className: 'text-terminal-green' },
-        { content: '│          │  └─────┘', className: 'text-terminal-green' },
+        { content: '│    ▲     │  │ ██  │', className: 'text-terminal-green' },
+        { content: '│   ███    │  │ ██  │', className: 'text-terminal-green' },
+        { content: '│    █     │  └─────┘', className: 'text-terminal-green' },
         { content: '│          │', className: 'text-terminal-green' },
         { content: '│          │  Score:', className: 'text-terminal-green' },
-        { content: '│    ██    │  0', className: 'text-terminal-green' },
+        { content: '│    ██    │  ' + tetrisScore, className: 'text-terminal-green' },
         { content: '│    ██    │', className: 'text-terminal-green' },
         { content: '│          │  Level:', className: 'text-terminal-green' },
-        { content: '│          │  1', className: 'text-terminal-green' },
+        { content: '│          │  ' + tetrisLevel, className: 'text-terminal-green' },
         { content: '│          │', className: 'text-terminal-green' },
         { content: '│          │  Lines:', className: 'text-terminal-green' },
-        { content: '│          │  0', className: 'text-terminal-green' },
+        { content: '│    █████ │  ' + tetrisLines, className: 'text-terminal-green' },
         { content: '│██████████│', className: 'text-terminal-green' },
         { content: '│██████████│', className: 'text-terminal-green' },
         { content: '└──────────┘', className: 'text-terminal-green' },
         { content: '', className: '' },
-        { content: 'Controls: A/D rotate, S drop, Arrow keys move', className: 'text-muted-gray' },
-        { content: 'Clear lines to score points!', className: 'text-muted-gray' },
+        { content: '🎮 T-piece falling! Use A/D rotate, S fast drop', className: 'text-neon-green' },
+        { content: 'Line clear bonus: +400 points', className: 'text-warning-yellow' },
+        { content: 'Type "tetris pause" to pause game.', className: 'text-muted-gray' },
       ];
 
     case 'hangman':
       const words = ['FIREWALL', 'ENCRYPTION', 'MALWARE', 'PHISHING', 'BACKDOOR', 'TROJAN', 'ROOTKIT', 'EXPLOIT', 'PAYLOAD', 'BOTNET'];
       const word = words[Math.floor(Math.random() * words.length)];
-      const display = word.split('').map(() => '_').join(' ');
+      const guessedLetters = ['E', 'T', 'A'];
+      const wrongGuesses = Math.floor(Math.random() * 3);
+      const display = word.split('').map(letter => 
+        guessedLetters.includes(letter) ? letter : '_'
+      ).join(' ');
+      
+      const hangmanStages = [
+        ['  ┌───┐', '  │   │', '  │    ', '  │    ', '  │    ', '  │    ', '──┴──  '],
+        ['  ┌───┐', '  │   │', '  │   O', '  │    ', '  │    ', '  │    ', '──┴──  '],
+        ['  ┌───┐', '  │   │', '  │   O', '  │   |', '  │    ', '  │    ', '──┴──  '],
+        ['  ┌───┐', '  │   │', '  │   O', '  │  /|', '  │    ', '  │    ', '──┴──  ']
+      ];
+      
       return [
         { content: '', className: '' },
-        { content: '🎯 <span class="text-neon-green">CYBER HANGMAN</span> 🎯', className: '' },
+        { content: '🎯 <span class="text-neon-green">CYBER HANGMAN - ACTIVE GAME</span> 🎯', className: '' },
         { content: '', className: '' },
-        { content: '  ┌───┐', className: 'text-terminal-green' },
-        { content: '  │   │', className: 'text-terminal-green' },
-        { content: '  │    ', className: 'text-terminal-green' },
-        { content: '  │    ', className: 'text-terminal-green' },
-        { content: '  │    ', className: 'text-terminal-green' },
-        { content: '  │    ', className: 'text-terminal-green' },
-        { content: '──┴──  ', className: 'text-terminal-green' },
+        ...hangmanStages[wrongGuesses].map(line => ({ content: line, className: 'text-terminal-green' })),
         { content: '', className: '' },
         { content: `Word: ${display}`, className: 'text-warning-yellow' },
-        { content: 'Wrong guesses: 0/6', className: 'text-soft-red' },
-        { content: 'Guessed letters: []', className: 'text-muted-gray' },
+        { content: `Wrong guesses: ${wrongGuesses}/6`, className: wrongGuesses > 2 ? 'text-soft-red' : 'text-muted-gray' },
+        { content: `Guessed letters: [${guessedLetters.join(', ')}]`, className: 'text-muted-gray' },
         { content: '', className: '' },
-        { content: 'Guess cybersecurity terms to save the hacker!', className: 'text-muted-gray' },
-        { content: 'Type letters to guess the word.', className: 'text-muted-gray' },
+        { content: '🎮 Game in progress! Type a letter to guess.', className: 'text-neon-green' },
+        { content: 'Category: Cybersecurity Terms', className: 'text-muted-gray' },
+        { content: 'Type "hangman restart" for new word.', className: 'text-muted-gray' },
       ];
 
     case 'blackjack':
@@ -628,9 +692,13 @@ export async function processCommand(input: string, sessionCommands: Set<string>
       const playerCard1 = Math.floor(Math.random() * 10) + 1;
       const playerCard2 = Math.floor(Math.random() * 10) + 1;
       const playerTotal = playerCard1 + playerCard2;
+      const gameState = playerTotal === 21 ? 'BLACKJACK' : playerTotal > 16 ? 'RISKY' : 'SAFE';
+      const dealerShowing = dealerCard;
+      const winnings = Math.floor(Math.random() * 500) + 100;
+      
       return [
         { content: '', className: '' },
-        { content: '♠️ <span class="text-neon-green">CYBER BLACKJACK</span> ♠️', className: '' },
+        { content: '♠️ <span class="text-neon-green">CYBER BLACKJACK - LIVE GAME</span> ♠️', className: '' },
         { content: '', className: '' },
         { content: 'Dealer:', className: 'text-warning-yellow' },
         { content: `┌─────┐ ┌─────┐`, className: 'text-terminal-green' },
@@ -638,7 +706,7 @@ export async function processCommand(input: string, sessionCommands: Set<string>
         { content: `│  ♠  │ │  ?  │`, className: 'text-terminal-green' },
         { content: `│  ${dealerCard}  │ │ ??? │`, className: 'text-terminal-green' },
         { content: `└─────┘ └─────┘`, className: 'text-terminal-green' },
-        { content: `Showing: ${dealerCard}`, className: 'text-muted-gray' },
+        { content: `Showing: ${dealerCard} | Hidden: ???`, className: 'text-muted-gray' },
         { content: '', className: '' },
         { content: 'Player:', className: 'text-warning-yellow' },
         { content: `┌─────┐ ┌─────┐`, className: 'text-terminal-green' },
@@ -646,9 +714,11 @@ export async function processCommand(input: string, sessionCommands: Set<string>
         { content: `│  ♥  │ │  ♦  │`, className: 'text-terminal-green' },
         { content: `│  ${playerCard1}  │ │  ${playerCard2}  │`, className: 'text-terminal-green' },
         { content: `└─────┘ └─────┘`, className: 'text-terminal-green' },
-        { content: `Total: ${playerTotal}`, className: 'text-warning-yellow' },
+        { content: `Total: ${playerTotal} | Status: ${gameState}`, className: 'text-warning-yellow' },
+        { content: `Bet: $${winnings} | House Edge: ${dealerShowing > 6 ? 'DEALER ADVANTAGE' : 'PLAYER ADVANTAGE'}`, className: 'text-muted-gray' },
         { content: '', className: '' },
-        { content: playerTotal === 21 ? '🎉 BLACKJACK! You win!' : 'Type "hit" for another card or "stand" to hold.', className: playerTotal === 21 ? 'text-neon-green' : 'text-muted-gray' },
+        { content: playerTotal === 21 ? '🎉 BLACKJACK! Automatic win!' : '🎮 Your turn - Type "hit" or "stand"', className: playerTotal === 21 ? 'text-neon-green' : 'text-neon-green' },
+        { content: 'Type "blackjack restart" for new hand.', className: 'text-muted-gray' },
       ];
 
     case 'dice':
