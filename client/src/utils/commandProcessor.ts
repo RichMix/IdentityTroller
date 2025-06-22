@@ -160,7 +160,7 @@ function sanitizeInput(input: string): string {
 function isValidCommand(command: string): boolean {
   const allowedCommands = [
     ...FUN_COMMANDS, 
-    'help', 'ls', 'pwd', 'cat', 'clear', 'sudo', 'whoami', 'manifesto', 'stack', 'tools', 'beliefs', 'games'
+    'help', 'ls', 'pwd', 'cat', 'clear', 'sudo', 'whoami', 'manifesto', 'stack', 'tools', 'beliefs', 'games', 'test'
   ];
   return allowedCommands.includes(command.toLowerCase());
 }

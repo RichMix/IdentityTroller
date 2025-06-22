@@ -25,7 +25,7 @@ export default function Terminal() {
 
   // Available commands for tab completion
   const availableCommands = [
-    'help', 'ls', 'pwd', 'cat', 'clear', 'whoami', 'sudo',
+    'help', 'ls', 'pwd', 'cat', 'clear', 'whoami', 'sudo', 'test',
     // Fun commands
     'neofetch', 'fortune', 'matrix', 'cowsay', 'cowthink', 'parrot', 'nmap',
     'figlet', 'toilet', 'lolcat', 'nyancat', 'sl', 'pipes', 'asciiquarium', 
