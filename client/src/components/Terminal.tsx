@@ -144,9 +144,48 @@ export default function Terminal() {
     setInput('');
   };
 
+  const handleTabCompletion = () => {
+    const trimmedInput = input.trim();
+    if (!trimmedInput) return;
+
+    const matches = availableCommands.filter(cmd => 
+      cmd.toLowerCase().startsWith(trimmedInput.toLowerCase())
+    );
+
+    if (matches.length === 1) {
+      setInput(matches[0] + ' ');
+      setShowSuggestions(false);
+    } else if (matches.length > 1) {
+      setTabSuggestions(matches);
+      setShowSuggestions(true);
+      
+      const commonPrefix = matches.reduce((prefix, cmd) => {
+        let common = '';
+        for (let i = 0; i < Math.min(prefix.length, cmd.length); i++) {
+          if (prefix[i].toLowerCase() === cmd[i].toLowerCase()) {
+            common += cmd[i];
+          } else {
+            break;
+          }
+        }
+        return common;
+      });
+      
+      if (commonPrefix.length > trimmedInput.length) {
+        setInput(commonPrefix);
+      }
+    }
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'ArrowUp') {
+    if (e.key === 'Tab') {
       e.preventDefault();
+      handleTabCompletion();
+    } else if (e.key === 'Escape') {
+      setShowSuggestions(false);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (showSuggestions) return;
       if (historyIndex > 0) {
         const newIndex = historyIndex - 1;
         setHistoryIndex(newIndex);
@@ -154,6 +193,7 @@ export default function Terminal() {
       }
     } else if (e.key === 'ArrowDown') {
       e.preventDefault();
+      if (showSuggestions) return;
       if (historyIndex < commandHistory.length - 1) {
         const newIndex = historyIndex + 1;
         setHistoryIndex(newIndex);
@@ -161,6 +201,10 @@ export default function Terminal() {
       } else {
         setHistoryIndex(commandHistory.length);
         setInput('');
+      }
+    } else {
+      if (showSuggestions && e.key !== 'ArrowUp' && e.key !== 'ArrowDown') {
+        setShowSuggestions(false);
       }
     }
   };
@@ -198,20 +242,40 @@ export default function Terminal() {
           {/* Terminal Input */}
           <div className="p-4 border-t border-terminal-green bg-terminal-bg">
             <form onSubmit={handleSubmit}>
-              <div className="flex items-center">
+              <div className="flex items-center relative">
                 <span className="text-neon-green mr-2">insurgent@hacker:~$</span>
-                <input 
+                <input
                   ref={inputRef}
-                  type="text" 
+                  type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  className="flex-1 bg-transparent text-terminal-green outline-none caret-terminal-green"
-                  autoComplete="off"
-                  spellCheck={false}
+                  className="bg-transparent border-none outline-none text-terminal-green flex-1 font-mono"
+                  placeholder={isBootComplete ? "Enter command... (Tab to complete)" : ""}
                   disabled={!isBootComplete}
+                  autoFocus
                 />
-                <span className="animate-blink text-terminal-green ml-1">█</span>
+                {showSuggestions && tabSuggestions.length > 0 && (
+                  <div className="absolute top-full left-0 mt-1 bg-black border border-neon-green rounded p-2 z-10 min-w-64">
+                    <div className="text-warning-yellow text-sm mb-1">Suggestions:</div>
+                    <div className="grid grid-cols-3 gap-1">
+                      {tabSuggestions.map((suggestion, index) => (
+                        <div
+                          key={index}
+                          className="text-terminal-green text-sm cursor-pointer hover:bg-gray-800 px-1 rounded"
+                          onClick={() => {
+                            setInput(suggestion + ' ');
+                            setShowSuggestions(false);
+                            inputRef.current?.focus();
+                          }}
+                        >
+                          {suggestion}
+                        </div>
+                      ))}
+                    </div>
+                    <div className="text-muted-gray text-xs mt-1">Press Tab to complete, Esc to close</div>
+                  </div>
+                )}
               </div>
             </form>
           </div>
