@@ -17,9 +17,23 @@ export default function Terminal() {
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
   const [isBootComplete, setIsBootComplete] = useState(false);
+  const [tabSuggestions, setTabSuggestions] = useState<string[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const outputRef = useRef<HTMLDivElement>(null);
   const matrixRef = useRef<HTMLDivElement>(null);
+
+  // Available commands for tab completion
+  const availableCommands = [
+    'help', 'ls', 'pwd', 'cat', 'clear', 'whoami', 'sudo',
+    // Fun commands
+    'neofetch', 'fortune', 'matrix', 'cowsay', 'cowthink', 'parrot', 'nmap',
+    'figlet', 'toilet', 'lolcat', 'nyancat', 'sl', 'pipes', 'asciiquarium', 
+    'cmatrix', 'banner', 'factor', 'yes', 'rev', 'games',
+    // Games
+    'snake', 'tetris', 'pong', 'breakout', 'hangman', 'nim',
+    'blackjack', 'slots', 'dice', 'coinflip', 'magic8', 'riddle', 'maze', 'sudoku', 'life'
+  ];
 
   useEffect(() => {
     // Reset session state on page refresh - generates new random command set
