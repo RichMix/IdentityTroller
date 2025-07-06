@@ -26,13 +26,26 @@ export function getCowthink(text: string = "This might be a trap..."): string {
                 ||     ||`;
 }
 
-export function getFiglet(text: string = "CHOPP_SUEYY"): string {
+export function getFiglet(text: string = "HACKER"): string {
+  // Security: Prevent identity leaks until authentication
+  const sanitizedText = text.toUpperCase().replace(/CHOPP_SUEYY/g, 'HACKER');
+  
+  if (sanitizedText === "HACKER") {
+    return `
+ ██   ██  █████   ██████ ██   ██ ███████ ██████  
+ ██   ██ ██   ██ ██      ██  ██  ██      ██   ██ 
+ ███████ ███████ ██      █████   █████   ██████  
+ ██   ██ ██   ██ ██      ██  ██  ██      ██   ██ 
+ ██   ██ ██   ██  ██████ ██   ██ ███████ ██   ██ `;
+  }
+  
+  // For other text, create a simple representation
   return `
- ██████ ██   ██  ██████  ██████  ██████      ███████ ██    ██ ███████ ██    ██ ██    ██ 
-██      ██   ██ ██    ██ ██   ██ ██   ██     ██      ██    ██ ██       ██  ██   ██  ██  
-██      ███████ ██    ██ ██████  ██████      ███████ ██    ██ █████     ████     ████   
-██      ██   ██ ██    ██ ██      ██               ██ ██    ██ ██         ██       ██    
- ██████ ██   ██  ██████  ██      ██          ███████  ██████  ███████    ██       ██    `;
+ ███████████████████████████████████████████████
+ █                                             █
+ █            ${sanitizedText.padEnd(20)}█
+ █                                             █
+ ███████████████████████████████████████████████`;
 }
 
 export function getParrot(): string {
@@ -144,7 +157,7 @@ export function getAsciiAquarium(): string {
 export function getNeofetch(): string {
   return `
 <span class="text-neon-green">                    ╭───────────────╮</span>
-<span class="text-neon-green">    ╭─╮╭─╮╭─╮╭─╮    │ </span><span class="text-warning-yellow">CHOPP_SUEYY</span><span class="text-neon-green">      │</span>
+<span class="text-neon-green">    ╭─╮╭─╮╭─╮╭─╮    │ </span><span class="text-warning-yellow">[CLASSIFIED]</span><span class="text-neon-green">      │</span>
 <span class="text-neon-green">    │ ╰╯ ╰╯ ╰╯ │    │ </span><span class="text-terminal-green">Digital Insurgent</span><span class="text-neon-green"> │</span>
 <span class="text-neon-green">    ╰─╮╭─╮╭─╮╭─╯    ├───────────────┤</span>
 <span class="text-neon-green">      ╰╯ ╰╯ ╰╯      │ </span><span class="text-muted-gray">OS:</span> ParrotSec<span class="text-neon-green">     │</span>

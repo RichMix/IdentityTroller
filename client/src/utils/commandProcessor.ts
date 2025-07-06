@@ -113,7 +113,11 @@ const FUN_COMMANDS = [
 
 // Generate random 11 commands per session
 function generateRandomRequiredCommands(): string[] {
-  const shuffled = [...FUN_COMMANDS].sort(() => Math.random() - 0.5);
+  // Security: Only select from entertainment commands that don't reveal identity
+  const safeCommands = FUN_COMMANDS.filter(cmd => 
+    !['banner', 'figlet', 'toilet', 'neofetch'].includes(cmd)
+  );
+  const shuffled = [...safeCommands].sort(() => Math.random() - 0.5);
   return shuffled.slice(0, 11);
 }
 
@@ -147,10 +151,12 @@ function getRemainingCommands(sessionCommands: Set<string>): string[] {
 
 // Security: Sanitize all inputs to prevent path traversal and injection
 function sanitizeInput(input: string): string {
-  // Remove dangerous characters and patterns
+  // Security: Remove dangerous characters and identity leaks
   return input
     .replace(/\.\./g, '') // Remove path traversal attempts
     .replace(/[;&|`$(){}[\]<>]/g, '') // Remove shell injection characters
+    .replace(/chopp_sueyy/gi, '[REDACTED]') // Block identity references
+    .replace(/CHOPP_SUEYY/g, '[REDACTED]') // Block uppercase variants
     .replace(/\s+/g, ' ') // Normalize whitespace
     .trim()
     .substring(0, 100); // Limit length
@@ -160,7 +166,8 @@ function sanitizeInput(input: string): string {
 function isValidCommand(command: string): boolean {
   const allowedCommands = [
     ...FUN_COMMANDS, 
-    'help', 'ls', 'pwd', 'cat', 'clear', 'sudo', 'whoami', 'manifesto', 'stack', 'tools', 'beliefs', 'games', 'test'
+    'help', 'ls', 'pwd', 'cat', 'clear', 'sudo', 'whoami', 'manifesto', 'stack', 'tools', 'beliefs', 'games', 'test',
+    'figlet', 'banner', 'toilet', 'neofetch'
   ];
   return allowedCommands.includes(command.toLowerCase());
 }
@@ -235,24 +242,34 @@ export async function processCommand(input: string, sessionCommands: Set<string>
       ];
 
     case 'whoami':
-      if (!hasCompletedPrerequisites(sessionCommands)) {
+      // Security: Triple verification system for identity reveal
+      const completedCmds = getUnlockedCommands(sessionCommands);
+      const isFullyAuthenticated = hasCompletedPrerequisites(sessionCommands);
+      
+      if (!isFullyAuthenticated) {
         const remaining = getRemainingCommands(sessionCommands);
-        const completed = getUnlockedCommands(sessionCommands);
         return [
           { content: '', className: '' },
           { content: '┌─────────────────────────────────────────────────────┐', className: 'text-soft-red' },
           { content: '│              ACCESS DENIED - LOCKED                │', className: 'text-soft-red' },
+          { content: '│              SECURITY PROTOCOL ACTIVE              │', className: 'text-soft-red' },
           { content: '└─────────────────────────────────────────────────────┘', className: 'text-soft-red' },
           { content: '', className: '' },
-          { content: '🔒 Identity revelation requires system exploration.', className: 'text-warning-yellow' },
+          { content: '🔒 CRITICAL: Identity verification requires complete system exploration', className: 'text-warning-yellow' },
+          { content: '⚠️  OPSEC Protocol: No identity disclosure until full authentication', className: 'text-warning-yellow' },
           { content: '', className: '' },
-          { content: `<span class="text-terminal-green">Commands unlocked (${completed.length}/11):</span>`, className: '' },
-          ...completed.map(cmd => ({ content: `  ✓ ${cmd}`, className: 'text-terminal-green' })),
+          { content: 'Current Status:', className: 'text-muted-gray' },
+          { content: `• Commands Explored: ${completedCmds.length}/11 required`, className: 'text-muted-gray' },
+          { content: `• Authentication Level: ${Math.floor((completedCmds.length/11) * 100)}%`, className: 'text-muted-gray' },
+          { content: `• Remaining Commands: ${11 - completedCmds.length}`, className: 'text-muted-gray' },
+          { content: '', className: '' },
+          { content: `<span class="text-terminal-green">Commands unlocked (${completedCmds.length}/11):</span>`, className: '' },
+          ...completedCmds.map(cmd => ({ content: `  ✓ ${cmd}`, className: 'text-terminal-green' })),
           { content: '', className: '' },
           { content: `<span class="text-soft-red">Commands required (${remaining.length} remaining):</span>`, className: '' },
           ...remaining.map(cmd => ({ content: `  ✗ ${cmd}`, className: 'text-muted-gray' })),
           { content: '', className: '' },
-          { content: 'Explore the system using these commands to unlock the identity.', className: 'text-muted-gray' },
+          { content: 'Type "help" to see available commands for exploration.', className: 'text-muted-gray' },
         ];
       }
 
@@ -996,6 +1013,21 @@ export async function processCommand(input: string, sessionCommands: Set<string>
       ];
 
     case 'banner':
+      // Security: Lock banner command until authentication complete
+      if (!hasCompletedPrerequisites(sessionCommands)) {
+        return [
+          { content: '', className: '' },
+          { content: '┌─────────────────────────────────────────────────────┐', className: 'text-soft-red' },
+          { content: '│               BANNER ACCESS DENIED                  │', className: 'text-soft-red' },
+          { content: '└─────────────────────────────────────────────────────┘', className: 'text-soft-red' },
+          { content: '', className: '' },
+          { content: '🔒 Banner functionality requires system authentication.', className: 'text-warning-yellow' },
+          { content: '', className: '' },
+          { content: 'Complete system exploration to unlock banner tools.', className: 'text-muted-gray' },
+          { content: `Commands needed: ${11 - getUnlockedCommands(sessionCommands).length} remaining`, className: 'text-muted-gray' },
+        ];
+      }
+      
       const bannerText = params.join(' ') || 'HACKER';
       return [
         { content: '', className: '' },
@@ -1031,6 +1063,21 @@ export async function processCommand(input: string, sessionCommands: Set<string>
       ];
 
     case 'figlet':
+      // Security: Lock figlet until authentication complete to prevent identity leaks
+      if (!hasCompletedPrerequisites(sessionCommands)) {
+        return [
+          { content: '', className: '' },
+          { content: '┌─────────────────────────────────────────────────────┐', className: 'text-soft-red' },
+          { content: '│               FIGLET ACCESS DENIED                  │', className: 'text-soft-red' },
+          { content: '└─────────────────────────────────────────────────────┘', className: 'text-soft-red' },
+          { content: '', className: '' },
+          { content: '🔒 ASCII art generation requires system authentication.', className: 'text-warning-yellow' },
+          { content: '', className: '' },
+          { content: 'Complete system exploration to unlock figlet tools.', className: 'text-muted-gray' },
+          { content: `Commands needed: ${11 - getUnlockedCommands(sessionCommands).length} remaining`, className: 'text-muted-gray' },
+        ];
+      }
+      
       const figletText = params.join(' ') || "CHOPP_SUEYY";
       return [
         { content: `<pre class="text-neon-green">${getFiglet(figletText)}</pre>`, className: '' }
@@ -1094,6 +1141,21 @@ export async function processCommand(input: string, sessionCommands: Set<string>
 
 
     case 'toilet':
+      // Security: Lock toilet until authentication complete
+      if (!hasCompletedPrerequisites(sessionCommands)) {
+        return [
+          { content: '', className: '' },
+          { content: '┌─────────────────────────────────────────────────────┐', className: 'text-soft-red' },
+          { content: '│               TOILET ACCESS DENIED                  │', className: 'text-soft-red' },
+          { content: '└─────────────────────────────────────────────────────┘', className: 'text-soft-red' },
+          { content: '', className: '' },
+          { content: '🔒 Toilet ASCII art requires system authentication.', className: 'text-warning-yellow' },
+          { content: '', className: '' },
+          { content: 'Complete system exploration to unlock toilet tools.', className: 'text-muted-gray' },
+          { content: `Commands needed: ${11 - getUnlockedCommands(sessionCommands).length} remaining`, className: 'text-muted-gray' },
+        ];
+      }
+      
       return [
         { content: `<pre class="text-warning-yellow">${getToilet()}</pre>`, className: '' }
       ];
@@ -1200,7 +1262,7 @@ export async function processCommand(input: string, sessionCommands: Set<string>
 
     case 'ls':
       const authenticated = hasCompletedPrerequisites(sessionCommands);
-      const completed = getUnlockedCommands(sessionCommands);
+      const completedCommands = getUnlockedCommands(sessionCommands);
       
       return [
         { content: '', className: '' },
@@ -1214,7 +1276,7 @@ export async function processCommand(input: string, sessionCommands: Set<string>
         { content: 'drwxr-xr-x 2 chopp chopp 4096 Dec 08 15:30 <span class="text-neon-green">projects/</span>', className: '' },
         { content: '-rwxr-xr-x 1 chopp chopp 2048 Dec 08 15:30 <span class="text-soft-red">hack.sh</span>', className: '' },
         { content: '', className: '' },
-        { content: `<span class="text-muted-gray">Authentication Status: ${authenticated ? 'VERIFIED' : 'GUEST'} | Commands Explored: ${completed.length}/11</span>`, className: '' }
+        { content: `<span class="text-muted-gray">Authentication Status: ${authenticated ? 'VERIFIED' : 'GUEST'} | Commands Explored: ${completedCommands.length}/11</span>`, className: '' }
       ];
 
     case 'cat':
@@ -1285,8 +1347,23 @@ export async function processCommand(input: string, sessionCommands: Set<string>
       ];
 
     case 'neofetch':
+      // Security: Lock neofetch until authentication complete
+      if (!hasCompletedPrerequisites(sessionCommands)) {
+        return [
+          { content: '', className: '' },
+          { content: getNeofetch(), className: '' },
+          { content: '', className: '' },
+          { content: '<span class="text-muted-gray">System information fetched from secure terminal</span>', className: '' },
+          { content: '<span class="text-soft-red">🔒 Full system details require authentication</span>', className: '' }
+        ];
+      }
+      
+      // Authenticated version with full details
       return [
-        { content: getNeofetch(), className: '' }
+        { content: '', className: '' },
+        { content: getNeofetch().replace('[CLASSIFIED]', 'CHOPP_SUEYY'), className: '' },
+        { content: '', className: '' },
+        { content: '<span class="text-muted-gray">System information fetched from secure terminal</span>', className: '' }
       ];
 
     case 'clear':
