@@ -72,13 +72,100 @@ My stack is Python + Bash + Solidity + Mongo + Tailwind + Rage.
 My firewall is my purpose.
 My proxy is truth.
 My payload is justice.`,
-  'tools.txt': `🔧 CHOPSUEYY Toolset
+  'tools.txt': `🔧 CHOPSUEYY Elite Digital Arsenal
 
-Languages: Python, JavaScript, Solidity, Bash, CTF Scripting
-Frameworks: Flask, Foundry, React, TailwindCSS
-Toolchains: Burp Suite, Hashcat, Metasploit, Wireshark, Ghidra, x64dbg
-Mission Tools: Canvas AI Assistant, CTF Decoder Suite, Blockchain Explorers
-Operating Systems: ParrotSec, Kali Linux, MacOS`,
+█ CORE PROGRAMMING LANGUAGES █
+├── Python 3.11+        - Primary weapon for automation, ML, and security analysis
+├── JavaScript/TypeScript - Web exploitation, Node.js backend infiltration  
+├── Solidity            - Smart contract auditing and blockchain exploitation
+├── Rust                - System-level exploitation and high-performance tools
+├── Go                  - Network tools and distributed system penetration
+├── C/C++               - Binary exploitation and reverse engineering
+├── Assembly x86/x64    - Low-level system manipulation and shellcode crafting
+└── Bash/Zsh            - Command-line automation and system scripting
+
+█ CYBERSECURITY FRAMEWORKS █
+├── Metasploit          - Penetration testing and exploit development
+├── Burp Suite Pro      - Web application security testing
+├── OWASP ZAP           - Automated web vulnerability scanning
+├── Nmap/Masscan        - Network reconnaissance and port scanning
+├── Wireshark/tcpdump   - Network traffic analysis and packet inspection
+├── Aircrack-ng         - Wireless network security testing
+├── John the Ripper     - Password cracking and hash analysis
+├── Hashcat             - GPU-accelerated password recovery
+└── SQLmap              - SQL injection testing and database exploitation
+
+█ REVERSE ENGINEERING TOOLS █
+├── Ghidra              - NSA's reverse engineering suite
+├── IDA Pro             - Advanced disassembler and debugger
+├── x64dbg/OllyDbg      - Dynamic analysis and debugging
+├── Radare2             - Open-source reverse engineering framework
+├── Binary Ninja        - Modern disassembly and decompilation
+├── Volatility          - Memory forensics and analysis
+├── YARA                - Malware identification and classification
+└── Cuckoo Sandbox      - Automated malware analysis environment
+
+█ BLOCKCHAIN & CRYPTO ARSENAL █
+├── Foundry             - Ethereum development and testing framework
+├── Hardhat             - Smart contract deployment and testing
+├── Slither             - Static analysis for Solidity vulnerabilities
+├── MythX               - Security analysis for smart contracts
+├── Brownie             - Python-based Ethereum development framework
+├── Web3.py/ethers.js   - Blockchain interaction libraries
+├── Chainlink           - Oracle network integration and testing
+└── IPFS                - Decentralized storage and content addressing
+
+█ WEB DEVELOPMENT STACK █
+├── React/Next.js       - Frontend infiltration and social engineering
+├── Flask/FastAPI       - Python backend development and API creation
+├── Express.js          - Node.js server development and middleware
+├── TailwindCSS         - Rapid UI development and styling
+├── PostgreSQL/Redis    - Database manipulation and caching systems
+├── Docker/Kubernetes   - Containerization and orchestration
+├── AWS/GCP/Azure       - Cloud infrastructure and security assessment
+└── Nginx/Apache        - Web server configuration and security hardening
+
+█ AI/ML WEAPONIZATION █
+├── TensorFlow/PyTorch  - Deep learning model development and adversarial attacks
+├── Transformers        - NLP model fine-tuning and prompt injection
+├── OpenCV              - Computer vision and image manipulation
+├── Scikit-learn        - Machine learning algorithms and data analysis
+├── Pandas/NumPy        - Data manipulation and statistical analysis
+├── NLTK/spaCy          - Natural language processing and text analysis
+├── Jupyter/IPython     - Interactive development and data exploration
+└── Matplotlib/Seaborn  - Data visualization and report generation
+
+█ OPERATIONAL SECURITY TOOLS █
+├── Tor/Proxychains     - Anonymous network routing and traffic obfuscation
+├── OpenVPN/WireGuard   - Secure tunnel establishment and traffic encryption
+├── GPG/PGP             - Message encryption and digital signatures
+├── Veracrypt           - Disk encryption and secure storage
+├── Signal/Element      - Secure communications and messaging
+├── Tails/Qubes         - Anonymous operating systems and compartmentalization
+├── pfSense/OPNsense    - Network security and firewall configuration
+└── Fail2ban/OSSEC      - Intrusion detection and prevention systems
+
+█ CTF & CHALLENGE PLATFORMS █
+├── HackTheBox          - Penetration testing labs and challenges
+├── TryHackMe           - Guided cybersecurity learning paths
+├── PicoCTF             - Educational capture-the-flag competitions
+├── OverTheWire         - War games and security challenges
+├── VulnHub             - Vulnerable virtual machines for practice
+├── CyberDefenders      - Blue team and forensics challenges
+├── Root-Me             - Multi-discipline security challenges
+└── SANS NetWars        - Professional cybersecurity competitions
+
+█ DEVELOPMENT ENVIRONMENTS █
+├── VSCode/Neovim       - Code editing with security extensions
+├── Kali Linux          - Penetration testing distribution
+├── Parrot Security     - Privacy-focused security platform
+├── BlackArch           - Penetration testing and security research
+├── Arch Linux          - Minimalist and customizable base system
+├── Ubuntu Server       - Production deployment and server management
+├── VMware/VirtualBox   - Virtual machine management and isolation
+└── QEMU/KVM            - Hardware virtualization and emulation
+
+"In the digital realm, knowledge is power, and power shared responsibly builds a better tomorrow."`,
   'beliefs.txt': `🔥 Guiding Beliefs
 
 Every system can be understood.
@@ -102,13 +189,14 @@ System Status: All files and functions unlocked.
 Welcome back, CHOPSUEYY.`
 };
 
-// Fun commands only for random selection (excluding basic navigation)
+// Enhanced fun commands for random selection (excluding basic navigation)
 const FUN_COMMANDS = [
   'neofetch', 'fortune', 'matrix', 'cowsay', 'cowthink', 'parrot', 'nmap',
   'figlet', 'toilet', 'lolcat', 'nyancat', 'sl', 'pipes', 'asciiquarium', 
-  'cmatrix', 'banner', 'factor', 'yes', 'rev', 'games',
+  'cmatrix', 'banner', 'factor', 'yes', 'rev', 'games', 'tree', 'uptime',
   'snake', 'tetris', 'pong', 'breakout', 'hangman', 'nim',
-  'blackjack', 'slots', 'dice', 'coinflip', 'magic8', 'riddle', 'maze', 'sudoku', 'life'
+  'blackjack', 'slots', 'dice', 'coinflip', 'magic8', 'riddle', 'maze', 'sudoku', 'life',
+  'joke', 'quote', 'encrypt', 'decode', 'status'
 ];
 
 // Generate random 11 commands per session
@@ -1370,6 +1458,103 @@ export async function processCommand(input: string, sessionCommands: Set<string>
     case 'clear':
       // This is handled by the Terminal component
       return [];
+
+    case 'status':
+      const authStatus = hasCompletedPrerequisites(sessionCommands);
+      const exploredCommands = getUnlockedCommands(sessionCommands);
+      const progress = Math.floor((exploredCommands.length / 11) * 100);
+      
+      return [
+        { content: '', className: '' },
+        { content: '📊 <span class="text-neon-green">SYSTEM STATUS REPORT</span> 📊', className: '' },
+        { content: '', className: '' },
+        { content: `<span class="text-warning-yellow">Authentication Level:</span> ${authStatus ? 'VERIFIED ✓' : 'GUEST 🔒'}`, className: '' },
+        { content: `<span class="text-warning-yellow">Exploration Progress:</span> ${exploredCommands.length}/11 commands (${progress}%)`, className: '' },
+        { content: `<span class="text-warning-yellow">Identity Status:</span> ${authStatus ? 'CHOPSUEYY - REVEALED' : 'CONCEALED'}`, className: '' },
+        { content: `<span class="text-warning-yellow">System Access:</span> ${authStatus ? 'FULL ARSENAL UNLOCKED' : 'LIMITED ACCESS'}`, className: '' },
+        { content: '', className: '' },
+        { content: '<span class="text-terminal-green">Commands Explored:</span>', className: '' },
+        ...exploredCommands.map(cmd => ({ content: `  ✓ ${cmd}`, className: 'text-terminal-green' })),
+        { content: '', className: '' },
+        authStatus ? 
+          { content: '<span class="text-terminal-green">🎉 All systems operational. Welcome back, CHOPSUEYY.</span>', className: '' } :
+          { content: `<span class="text-warning-yellow">⚡ Continue exploring to unlock ${11 - exploredCommands.length} more commands for full access!</span>`, className: '' }
+      ];
+
+    case 'quote':
+      const quotes = [
+        "Code is language. Language is power. Power belongs to those who break the system to rebuild it better.",
+        "Every system can be understood. Every lock was made to be tested.",
+        "In the digital realm, knowledge is power, and power shared responsibly builds a better tomorrow.",
+        "The stories of the oppressed must be told — in plaintext, JSON, and code.",
+        "If you can't own it, you can't trust it. If you can't read it, you shouldn't run it.",
+        "My firewall is my purpose. My proxy is truth. My payload is justice."
+      ];
+      const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+      
+      return [
+        { content: '', className: '' },
+        { content: '💭 <span class="text-neon-green">DIGITAL WISDOM</span> 💭', className: '' },
+        { content: '', className: '' },
+        { content: `"${randomQuote}"`, className: 'text-terminal-green' },
+        { content: '', className: '' },
+        { content: '- CHOPSUEYY, Digital Insurgent', className: 'text-muted-gray' },
+      ];
+
+    case 'joke':
+      const jokes = [
+        "Why do hackers prefer dark mode? Because light attracts bugs! 🐛",
+        "How many programmers does it take to change a light bulb? None. It's a hardware problem.",
+        "Why do SQL queries cry? Because they have too many joins! 😭",
+        "What's a hacker's favorite type of music? Heavy metal... and Python! 🐍",
+        "Why don't hackers ever get lost? They always know their way around the net! 🕸️",
+        "What do you call a programmer from Finland? Nerdic! 🇫🇮"
+      ];
+      const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
+      
+      return [
+        { content: '', className: '' },
+        { content: '😂 <span class="text-neon-green">TERMINAL HUMOR</span> 😂', className: '' },
+        { content: '', className: '' },
+        { content: randomJoke, className: 'text-terminal-green' },
+      ];
+
+    case 'encrypt':
+      const textToEncrypt = params.join(' ') || 'CHOPSUEYY';
+      const encrypted = btoa(textToEncrypt);
+      
+      return [
+        { content: '', className: '' },
+        { content: '🔐 <span class="text-neon-green">ENCRYPTION MODULE</span> 🔐', className: '' },
+        { content: '', className: '' },
+        { content: `<span class="text-warning-yellow">Original:</span> ${textToEncrypt}`, className: '' },
+        { content: `<span class="text-warning-yellow">Base64:</span> ${encrypted}`, className: 'text-terminal-green' },
+        { content: '', className: '' },
+        { content: 'Use "decode <encrypted_text>" to decrypt', className: 'text-muted-gray' },
+      ];
+
+    case 'decode':
+      const textToDecode = params.join(' ');
+      if (!textToDecode) {
+        return [
+          { content: '<span class="text-soft-red">Usage: decode <base64_text></span>', className: '' }
+        ];
+      }
+      
+      try {
+        const decoded = atob(textToDecode);
+        return [
+          { content: '', className: '' },
+          { content: '🔓 <span class="text-neon-green">DECRYPTION MODULE</span> 🔓', className: '' },
+          { content: '', className: '' },
+          { content: `<span class="text-warning-yellow">Encrypted:</span> ${textToDecode}`, className: '' },
+          { content: `<span class="text-warning-yellow">Decoded:</span> ${decoded}`, className: 'text-terminal-green' },
+        ];
+      } catch (error) {
+        return [
+          { content: '<span class="text-soft-red">❌ Invalid Base64 encoding</span>', className: '' }
+        ];
+      }
 
     case 'sudo':
       // Rick roll redirect
