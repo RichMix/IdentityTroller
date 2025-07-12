@@ -1,7 +1,7 @@
 # Elite Hacker Terminal Interface
 
 ## Project Overview
-An interactive terminal-style hacker landing page that conceals the user's identity (CHOPP_SUEYY) behind "insurgent@hacker" prompt. Features a progressive authentication system requiring exploration of 11 randomly-selected fun commands before revealing identity files and the "whoami" command.
+An interactive terminal-style hacker landing page that conceals the user's identity (CHOPSUEYY) behind "insurgent@hacker" prompt. Features a progressive authentication system requiring exploration of 11 randomly-selected fun commands before revealing identity files and the "whoami" command.
 
 ## Architecture
 - **Frontend**: React + TypeScript with terminal interface simulation
@@ -18,15 +18,14 @@ An interactive terminal-style hacker landing page that conceals the user's ident
 - Matrix rain effects and cyberpunk theming
 
 ## Recent Changes
-**2025-01-06**: 
-- **CRITICAL SECURITY FIX**: Locked banner, figlet, toilet, neofetch commands until authentication
-- **IDENTITY PROTECTION**: Removed all "chopp_sueyy" references until 11 commands completed
-- **ENHANCED OPSEC**: Added triple verification system for whoami command
-- **INPUT SANITIZATION**: Comprehensive filtering to prevent identity leaks
-- **COMMAND FILTERING**: Excluded identity-revealing commands from random selection
-- **AUTHENTICATION LAYERS**: Progressive security with detailed status reporting
-- **TAB COMPLETION**: Intelligent suggestions with partial matching active
-- **GAMES TESTING**: All 35+ commands verified functional with proper security
+**2025-01-12**:
+- **IDENTITY CHANGE**: Complete rebrand from "chopp_sueyy" to "chopsueyy" across entire codebase
+- **ENHANCED VISUALS**: Upgraded steam locomotive (sl) command with detailed ASCII art and animations
+- **PARTY PARROT**: Enhanced parrot command with advanced ASCII art and CSS dance animation
+- **SECURITY COMPLIANCE**: All identity-revealing commands (manifesto, figlet, banner) only show "chopsueyy" after 11 commands
+- **FILE SYSTEM UPDATE**: All user references updated to "chopsueyy" in ls, pwd, htop commands
+- **COMMAND AUTHENTICATION**: figlet, toilet, banner, neofetch commands locked until full exploration
+- **VISUAL EFFECTS**: Added parrot-dance CSS animation for enhanced terminal experience
 
 ## User Preferences
 - Maintain mystery around identity until exploration complete

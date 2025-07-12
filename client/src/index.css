@@ -218,6 +218,18 @@
   background: var(--neon-green);
 }
 
+@keyframes parrot-dance {
+  0% { transform: translateX(-5px) scale(1); }
+  25% { transform: translateX(5px) scale(1.1); }
+  50% { transform: translateX(-3px) scale(1); }
+  75% { transform: translateX(3px) scale(1.05); }
+  100% { transform: translateX(-5px) scale(1); }
+}
+
+.parrot-container {
+  animation: parrot-dance 1.5s infinite ease-in-out;
+}
+
 .parrot-container {
   display: inline-block;
   animation: parrot-dance 0.5s ease-in-out infinite alternate;

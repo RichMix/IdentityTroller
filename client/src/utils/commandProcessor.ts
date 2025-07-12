@@ -50,10 +50,10 @@ Current session: EXPLORATION MODE`
 
 // Unlocked file contents for authenticated users
 const unlockedFiles: Record<string, string> = {
-  'manifesto.txt': `🧠 The Manifesto of CHOPP_SUEYY
+  'manifesto.txt': `🧠 The Manifesto of CHOPSUEYY
 "Code is language. Language is power. Power belongs to those who break the system to rebuild it better."
 
-I am CHOPP_SUEYY — a digital insurgent, full-stack breaker and builder, and ghost in the machine. 
+I am CHOPSUEYY — a digital insurgent, full-stack breaker and builder, and ghost in the machine. 
 My mission spans across networks, blockchains, operating systems, and borders.
 
 In the CTF arena, I extract truth from binaries, decrypt the secrets of RAM dumps, 
@@ -72,7 +72,7 @@ My stack is Python + Bash + Solidity + Mongo + Tailwind + Rage.
 My firewall is my purpose.
 My proxy is truth.
 My payload is justice.`,
-  'tools.txt': `🔧 CHOPP_SUEYY Toolset
+  'tools.txt': `🔧 CHOPSUEYY Toolset
 
 Languages: Python, JavaScript, Solidity, Bash, CTF Scripting
 Frameworks: Flask, Foundry, React, TailwindCSS
@@ -91,7 +91,7 @@ If you can't own it, you can't trust it. If you can't read it, you shouldn't run
 TERMINAL_VERSION: 2.1.4-insurgent-unlocked
 BUILD_DATE: 2024-12-08
 SECURITY_LEVEL: FULL_ACCESS_GRANTED
-OPERATOR: CHOPP_SUEYY - Digital Insurgent
+OPERATOR: CHOPSUEYY - Digital Insurgent
 ACCESS_TIER: AUTHENTICATED_USER
 
 Authentication completed successfully.
@@ -99,7 +99,7 @@ Identity verification: PASSED
 Command exploration: COMPLETED (11/11)
 
 System Status: All files and functions unlocked.
-Welcome back, CHOPP_SUEYY.`
+Welcome back, CHOPSUEYY.`
 };
 
 // Fun commands only for random selection (excluding basic navigation)
@@ -155,8 +155,8 @@ function sanitizeInput(input: string): string {
   return input
     .replace(/\.\./g, '') // Remove path traversal attempts
     .replace(/[;&|`$(){}[\]<>]/g, '') // Remove shell injection characters
-    .replace(/chopp_sueyy/gi, '[REDACTED]') // Block identity references
-    .replace(/CHOPP_SUEYY/g, '[REDACTED]') // Block uppercase variants
+    .replace(/chopsueyy/gi, '[REDACTED]') // Block identity references
+    .replace(/CHOPSUEYY/g, '[REDACTED]') // Block uppercase variants
     .replace(/\s+/g, ' ') // Normalize whitespace
     .trim()
     .substring(0, 100); // Limit length
@@ -279,7 +279,7 @@ export async function processCommand(input: string, sessionCommands: Set<string>
         { content: '│              IDENTITY REVELATION UNLOCKED           │', className: 'text-terminal-green' },
         { content: '└─────────────────────────────────────────────────────┘', className: 'text-terminal-green' },
         { content: '', className: '' },
-        { content: '<span class="text-neon-green glitch-text" data-text="CHOPP_SUEYY">CHOPP_SUEYY</span>', className: '' },
+        { content: '<span class="text-neon-green glitch-text" data-text="CHOPSUEYY">CHOPSUEYY</span>', className: '' },
         { content: '', className: '' },
         { content: '<span class="text-warning-yellow">STATUS:</span> Digital Insurgent | Full-Stack Breaker & Builder', className: '' },
         { content: '<span class="text-warning-yellow">LOCATION:</span> Ghost in the Machine', className: '' },
@@ -318,11 +318,11 @@ export async function processCommand(input: string, sessionCommands: Set<string>
         { content: '', className: '' },
         { content: `<pre class="text-neon-green">${getFiglet()}</pre>`, className: '' },
         { content: '', className: '' },
-        { content: '<span class="text-neon-green">🧠 The Manifesto of CHOPP_SUEYY</span>', className: '' },
+        { content: '<span class="text-neon-green">🧠 The Manifesto of CHOPSUEYY</span>', className: '' },
         { content: '', className: '' },
         { content: '"Code is language. Language is power. Power belongs to those who break the system to rebuild it better."', className: 'text-terminal-green' },
         { content: '', className: '' },
-        { content: 'I am CHOPP_SUEYY — a digital insurgent, full-stack breaker and builder, and ghost in the machine.', className: 'text-terminal-green' },
+        { content: 'I am CHOPSUEYY — a digital insurgent, full-stack breaker and builder, and ghost in the machine.', className: 'text-terminal-green' },
         { content: 'My mission spans across networks, blockchains, operating systems, and borders.', className: 'text-terminal-green' },
         { content: '', className: '' },
         { content: '<span class="text-warning-yellow">In the CTF arena</span>, I extract truth from binaries, decrypt the secrets of RAM dumps,', className: '' },
@@ -346,7 +346,7 @@ export async function processCommand(input: string, sessionCommands: Set<string>
     case 'stack':
       return [
         { content: '', className: '' },
-        { content: '<span class="text-neon-green">🔧 CHOPP_SUEYY Technical Arsenal</span>', className: '' },
+        { content: '<span class="text-neon-green">🔧 CHOPSUEYY Technical Arsenal</span>', className: '' },
         { content: '', className: '' },
         { content: '<span class="text-warning-yellow">Programming Languages:</span>', className: '' },
         { content: '├── Python         - Primary weapon for automation & security', className: 'text-terminal-green' },
@@ -1028,7 +1028,7 @@ export async function processCommand(input: string, sessionCommands: Set<string>
         ];
       }
       
-      const bannerText = params.join(' ') || 'HACKER';
+      const bannerText = params.join(' ') || 'CHOPSUEYY';
       return [
         { content: '', className: '' },
         { content: '🏴 <span class="text-neon-green">DIGITAL BANNER</span> 🏴', className: '' },
@@ -1078,7 +1078,7 @@ export async function processCommand(input: string, sessionCommands: Set<string>
         ];
       }
       
-      const figletText = params.join(' ') || "CHOPP_SUEYY";
+      const figletText = params.join(' ') || "CHOPSUEYY";
       return [
         { content: `<pre class="text-neon-green">${getFiglet(figletText)}</pre>`, className: '' }
       ];
@@ -1156,8 +1156,9 @@ export async function processCommand(input: string, sessionCommands: Set<string>
         ];
       }
       
+      const toiletText = params.join(' ') || "CHOPSUEYY";
       return [
-        { content: `<pre class="text-warning-yellow">${getToilet()}</pre>`, className: '' }
+        { content: `<pre class="text-warning-yellow">${getToilet(toiletText)}</pre>`, className: '' }
       ];
 
     case 'nmap':
@@ -1267,14 +1268,14 @@ export async function processCommand(input: string, sessionCommands: Set<string>
       return [
         { content: '', className: '' },
         { content: `<span class="text-warning-yellow">total ${authenticated ? '28' : '24'}</span>`, className: '' },
-        { content: `${authenticated ? '-rw-r--r--' : '----------'} 1 ${authenticated ? 'chopp' : 'root '} ${authenticated ? 'chopp' : 'admin'} 1337 Dec 08 15:30 <span class="${authenticated ? 'text-terminal-green' : 'text-soft-red'}">manifesto.txt</span> ${authenticated ? '' : '🔒'}`, className: '' },
-        { content: `${authenticated ? '-rw-r--r--' : '----------'} 1 ${authenticated ? 'chopp' : 'root '} ${authenticated ? 'chopp' : 'admin'}  892 Dec 08 15:30 <span class="${authenticated ? 'text-terminal-green' : 'text-soft-red'}">tools.txt</span> ${authenticated ? '' : '🔒'}`, className: '' },
-        { content: `${authenticated ? '-rw-r--r--' : '----------'} 1 ${authenticated ? 'chopp' : 'root '} ${authenticated ? 'chopp' : 'admin'}  456 Dec 08 15:30 <span class="${authenticated ? 'text-terminal-green' : 'text-soft-red'}">beliefs.txt</span> ${authenticated ? '' : '🔒'}`, className: '' },
-        { content: '-rw-r--r-- 1 chopp chopp  724 Dec 08 15:30 <span class="text-terminal-green">readme.txt</span>', className: '' },
-        { content: '-rw-r--r-- 1 chopp chopp  542 Dec 08 15:30 <span class="text-terminal-green">version.txt</span>', className: '' },
-        { content: 'drwxr-xr-x 2 chopp chopp 4096 Dec 08 15:30 <span class="text-neon-green">exploits/</span>', className: '' },
-        { content: 'drwxr-xr-x 2 chopp chopp 4096 Dec 08 15:30 <span class="text-neon-green">projects/</span>', className: '' },
-        { content: '-rwxr-xr-x 1 chopp chopp 2048 Dec 08 15:30 <span class="text-soft-red">hack.sh</span>', className: '' },
+        { content: `${authenticated ? '-rw-r--r--' : '----------'} 1 ${authenticated ? 'chopsueyy' : 'root '} ${authenticated ? 'chopsueyy' : 'admin'} 1337 Dec 08 15:30 <span class="${authenticated ? 'text-terminal-green' : 'text-soft-red'}">manifesto.txt</span> ${authenticated ? '' : '🔒'}`, className: '' },
+        { content: `${authenticated ? '-rw-r--r--' : '----------'} 1 ${authenticated ? 'chopsueyy' : 'root '} ${authenticated ? 'chopsueyy' : 'admin'}  892 Dec 08 15:30 <span class="${authenticated ? 'text-terminal-green' : 'text-soft-red'}">tools.txt</span> ${authenticated ? '' : '🔒'}`, className: '' },
+        { content: `${authenticated ? '-rw-r--r--' : '----------'} 1 ${authenticated ? 'chopsueyy' : 'root '} ${authenticated ? 'chopsueyy' : 'admin'}  456 Dec 08 15:30 <span class="${authenticated ? 'text-terminal-green' : 'text-soft-red'}">beliefs.txt</span> ${authenticated ? '' : '🔒'}`, className: '' },
+        { content: '-rw-r--r-- 1 chopsueyy chopsueyy  724 Dec 08 15:30 <span class="text-terminal-green">readme.txt</span>', className: '' },
+        { content: '-rw-r--r-- 1 chopsueyy chopsueyy  542 Dec 08 15:30 <span class="text-terminal-green">version.txt</span>', className: '' },
+        { content: 'drwxr-xr-x 2 chopsueyy chopsueyy 4096 Dec 08 15:30 <span class="text-neon-green">exploits/</span>', className: '' },
+        { content: 'drwxr-xr-x 2 chopsueyy chopsueyy 4096 Dec 08 15:30 <span class="text-neon-green">projects/</span>', className: '' },
+        { content: '-rwxr-xr-x 1 chopsueyy chopsueyy 2048 Dec 08 15:30 <span class="text-soft-red">hack.sh</span>', className: '' },
         { content: '', className: '' },
         { content: `<span class="text-muted-gray">Authentication Status: ${authenticated ? 'VERIFIED' : 'GUEST'} | Commands Explored: ${completedCommands.length}/11</span>`, className: '' }
       ];
@@ -1325,7 +1326,7 @@ export async function processCommand(input: string, sessionCommands: Set<string>
 
     case 'pwd':
       return [
-        { content: '<span class="text-terminal-green">/home/chopp</span>', className: '' }
+        { content: '<span class="text-terminal-green">/home/chopsueyy</span>', className: '' }
       ];
 
     case 'htop':
@@ -1342,8 +1343,8 @@ export async function processCommand(input: string, sessionCommands: Set<string>
         { content: '  PID  USER     CPU%  MEM%  COMMAND', className: 'text-terminal-green' },
         { content: ' 1337  chopp    45.2  12.8  ./neural_network_trainer', className: 'text-terminal-green' },
         { content: ' 1338  chopp    15.4   8.3  burpsuite', className: 'text-terminal-green' },
-        { content: ' 1339  chopp    12.1   6.7  wireshark', className: 'text-terminal-green' },
-        { content: ' 1340  chopp    8.9    4.2  python3 blockchain_analyzer.py', className: 'text-terminal-green' }
+        { content: ' 1339  chopsueyy    12.1   6.7  wireshark', className: 'text-terminal-green' },
+        { content: ' 1340  chopsueyy    8.9    4.2  python3 blockchain_analyzer.py', className: 'text-terminal-green' }
       ];
 
     case 'neofetch':
@@ -1361,7 +1362,7 @@ export async function processCommand(input: string, sessionCommands: Set<string>
       // Authenticated version with full details
       return [
         { content: '', className: '' },
-        { content: getNeofetch().replace('[CLASSIFIED]', 'CHOPP_SUEYY'), className: '' },
+        { content: getNeofetch().replace('[CLASSIFIED]', 'CHOPSUEYY'), className: '' },
         { content: '', className: '' },
         { content: '<span class="text-muted-gray">System information fetched from secure terminal</span>', className: '' }
       ];
