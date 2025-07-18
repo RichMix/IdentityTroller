@@ -1323,18 +1323,20 @@ export async function processCommand(input: string, sessionCommands: Set<string>
     case 'ls':
       const authenticated = hasCompletedPrerequisites(sessionCommands);
       const completedCommands = getUnlockedCommands(sessionCommands);
+      const userDisplay = authenticated ? 'chopsueyy' : 'guest';
+      const groupDisplay = authenticated ? 'chopsueyy' : 'system';
       
       return [
         { content: '', className: '' },
         { content: `<span class="text-warning-yellow">total ${authenticated ? '28' : '24'}</span>`, className: '' },
-        { content: `${authenticated ? '-rw-r--r--' : '----------'} 1 ${authenticated ? 'chopsueyy' : 'root '} ${authenticated ? 'chopsueyy' : 'admin'} 1337 Dec 08 15:30 <span class="${authenticated ? 'text-terminal-green' : 'text-soft-red'}">manifesto.txt</span> ${authenticated ? '' : '🔒'}`, className: '' },
-        { content: `${authenticated ? '-rw-r--r--' : '----------'} 1 ${authenticated ? 'chopsueyy' : 'root '} ${authenticated ? 'chopsueyy' : 'admin'}  892 Dec 08 15:30 <span class="${authenticated ? 'text-terminal-green' : 'text-soft-red'}">tools.txt</span> ${authenticated ? '' : '🔒'}`, className: '' },
-        { content: `${authenticated ? '-rw-r--r--' : '----------'} 1 ${authenticated ? 'chopsueyy' : 'root '} ${authenticated ? 'chopsueyy' : 'admin'}  456 Dec 08 15:30 <span class="${authenticated ? 'text-terminal-green' : 'text-soft-red'}">beliefs.txt</span> ${authenticated ? '' : '🔒'}`, className: '' },
-        { content: '-rw-r--r-- 1 chopsueyy chopsueyy  724 Dec 08 15:30 <span class="text-terminal-green">readme.txt</span>', className: '' },
-        { content: '-rw-r--r-- 1 chopsueyy chopsueyy  542 Dec 08 15:30 <span class="text-terminal-green">version.txt</span>', className: '' },
-        { content: 'drwxr-xr-x 2 chopsueyy chopsueyy 4096 Dec 08 15:30 <span class="text-neon-green">exploits/</span>', className: '' },
-        { content: 'drwxr-xr-x 2 chopsueyy chopsueyy 4096 Dec 08 15:30 <span class="text-neon-green">projects/</span>', className: '' },
-        { content: '-rwxr-xr-x 1 chopsueyy chopsueyy 2048 Dec 08 15:30 <span class="text-soft-red">hack.sh</span>', className: '' },
+        { content: `${authenticated ? '-rw-r--r--' : '----------'} 1 ${userDisplay} ${groupDisplay} 1337 Dec 08 15:30 <span class="${authenticated ? 'text-terminal-green' : 'text-soft-red'}">manifesto.txt</span> ${authenticated ? '' : '🔒'}`, className: '' },
+        { content: `${authenticated ? '-rw-r--r--' : '----------'} 1 ${userDisplay} ${groupDisplay}  892 Dec 08 15:30 <span class="${authenticated ? 'text-terminal-green' : 'text-soft-red'}">tools.txt</span> ${authenticated ? '' : '🔒'}`, className: '' },
+        { content: `${authenticated ? '-rw-r--r--' : '----------'} 1 ${userDisplay} ${groupDisplay}  456 Dec 08 15:30 <span class="${authenticated ? 'text-terminal-green' : 'text-soft-red'}">beliefs.txt</span> ${authenticated ? '' : '🔒'}`, className: '' },
+        { content: `-rw-r--r-- 1 ${userDisplay} ${groupDisplay}  724 Dec 08 15:30 <span class="text-terminal-green">readme.txt</span>`, className: '' },
+        { content: `-rw-r--r-- 1 ${userDisplay} ${groupDisplay}  542 Dec 08 15:30 <span class="text-terminal-green">version.txt</span>`, className: '' },
+        { content: `drwxr-xr-x 2 ${userDisplay} ${groupDisplay} 4096 Dec 08 15:30 <span class="text-neon-green">exploits/</span>`, className: '' },
+        { content: `drwxr-xr-x 2 ${userDisplay} ${groupDisplay} 4096 Dec 08 15:30 <span class="text-neon-green">projects/</span>`, className: '' },
+        { content: `-rwxr-xr-x 1 ${userDisplay} ${groupDisplay} 2048 Dec 08 15:30 <span class="text-soft-red">hack.sh</span>`, className: '' },
         { content: '', className: '' },
         { content: `<span class="text-muted-gray">Authentication Status: ${authenticated ? 'VERIFIED' : 'GUEST'} | Commands Explored: ${completedCommands.length}/11</span>`, className: '' }
       ];
@@ -1384,8 +1386,10 @@ export async function processCommand(input: string, sessionCommands: Set<string>
       }
 
     case 'pwd':
+      const authStatus = hasCompletedPrerequisites(sessionCommands);
+      const currentUser = authStatus ? 'chopsueyy' : 'guest';
       return [
-        { content: '<span class="text-terminal-green">/home/chopsueyy</span>', className: '' }
+        { content: `<span class="text-terminal-green">/home/${currentUser}</span>`, className: '' }
       ];
 
     case 'htop':
@@ -1400,10 +1404,10 @@ export async function processCommand(input: string, sessionCommands: Set<string>
         { content: '', className: '' },
         { content: '<span class="text-warning-yellow">Top Processes:</span>', className: '' },
         { content: '  PID  USER     CPU%  MEM%  COMMAND', className: 'text-terminal-green' },
-        { content: ' 1337  chopp    45.2  12.8  ./neural_network_trainer', className: 'text-terminal-green' },
-        { content: ' 1338  chopp    15.4   8.3  burpsuite', className: 'text-terminal-green' },
-        { content: ' 1339  chopsueyy    12.1   6.7  wireshark', className: 'text-terminal-green' },
-        { content: ' 1340  chopsueyy    8.9    4.2  python3 blockchain_analyzer.py', className: 'text-terminal-green' }
+        { content: ` 1337  ${hasCompletedPrerequisites(sessionCommands) ? 'chopsueyy' : 'guest  '}  45.2  12.8  ./neural_network_trainer`, className: 'text-terminal-green' },
+        { content: ` 1338  ${hasCompletedPrerequisites(sessionCommands) ? 'chopsueyy' : 'guest  '}  15.4   8.3  burpsuite`, className: 'text-terminal-green' },
+        { content: ` 1339  ${hasCompletedPrerequisites(sessionCommands) ? 'chopsueyy' : 'guest  '}  12.1   6.7  wireshark`, className: 'text-terminal-green' },
+        { content: ` 1340  ${hasCompletedPrerequisites(sessionCommands) ? 'chopsueyy' : 'guest  '}  8.9    4.2  python3 blockchain_analyzer.py`, className: 'text-terminal-green' }
       ];
 
     case 'neofetch':
@@ -1431,7 +1435,7 @@ export async function processCommand(input: string, sessionCommands: Set<string>
       return [];
 
     case 'status':
-      const authStatus = hasCompletedPrerequisites(sessionCommands);
+      const statusAuthCheck = hasCompletedPrerequisites(sessionCommands);
       const exploredCommands = getUnlockedCommands(sessionCommands);
       const progress = Math.floor((exploredCommands.length / 11) * 100);
       
@@ -1439,15 +1443,15 @@ export async function processCommand(input: string, sessionCommands: Set<string>
         { content: '', className: '' },
         { content: '📊 <span class="text-neon-green">SYSTEM STATUS REPORT</span> 📊', className: '' },
         { content: '', className: '' },
-        { content: `<span class="text-warning-yellow">Authentication Level:</span> ${authStatus ? 'VERIFIED ✓' : 'GUEST 🔒'}`, className: '' },
+        { content: `<span class="text-warning-yellow">Authentication Level:</span> ${statusAuthCheck ? 'VERIFIED ✓' : 'GUEST 🔒'}`, className: '' },
         { content: `<span class="text-warning-yellow">Exploration Progress:</span> ${exploredCommands.length}/11 commands (${progress}%)`, className: '' },
-        { content: `<span class="text-warning-yellow">Identity Status:</span> ${authStatus ? 'CHOPSUEYY - REVEALED' : 'CONCEALED'}`, className: '' },
-        { content: `<span class="text-warning-yellow">System Access:</span> ${authStatus ? 'FULL ARSENAL UNLOCKED' : 'LIMITED ACCESS'}`, className: '' },
+        { content: `<span class="text-warning-yellow">Identity Status:</span> ${statusAuthCheck ? 'CHOPSUEYY - REVEALED' : 'CONCEALED'}`, className: '' },
+        { content: `<span class="text-warning-yellow">System Access:</span> ${statusAuthCheck ? 'FULL ARSENAL UNLOCKED' : 'LIMITED ACCESS'}`, className: '' },
         { content: '', className: '' },
         { content: '<span class="text-terminal-green">Commands Explored:</span>', className: '' },
         ...exploredCommands.map(cmd => ({ content: `  ✓ ${cmd}`, className: 'text-terminal-green' })),
         { content: '', className: '' },
-        authStatus ? 
+        statusAuthCheck ? 
           { content: '<span class="text-terminal-green">🎉 All systems operational. Welcome back, CHOPSUEYY.</span>', className: '' } :
           { content: `<span class="text-warning-yellow">⚡ Continue exploring to unlock ${11 - exploredCommands.length} more commands for full access!</span>`, className: '' }
       ];
