@@ -18,14 +18,18 @@ An interactive terminal-style hacker landing page that conceals the user's ident
 - Matrix rain effects and cyberpunk theming
 
 ## Recent Changes
-**2025-01-12 - DEPLOYMENT READY**:
+**2025-01-18 - WEBSITE EMBEDDING READY**:
+- **COMPLETE SECURITY LOCKDOWN**: Fixed all identity leaks in ls, pwd, htop commands to show "guest" until authenticated
+- **EMBEDDING SUPPORT**: Created comprehensive HTML embedding guide with iframe integration
+- **GUEST MODE PERFECTED**: All system commands show "guest@hacker" and "guest" user until 11-command authentication
+- **DEPLOYMENT READY**: Terminal fully secured and prepared for website embedding with responsive options
+
+**2025-01-12 - AUTHENTICATION SYSTEM**:
 - **IDENTITY COMPLETE**: Full rebrand to "chopsueyy" across entire codebase with comprehensive security
 - **ENHANCED ARSENAL**: Massively upgraded tools.txt with 80+ cybersecurity tools and frameworks categorized by domain
 - **NEW COMMANDS**: Added status, quote, joke, encrypt/decode commands for enhanced user experience
 - **VISUAL UPGRADES**: Enhanced steam locomotive and parrot with advanced ASCII art and CSS animations
-- **AUTHENTICATION SYSTEM**: All identity commands locked until 11 random commands explored
 - **COMMAND EXPANSION**: 40+ fun commands available for random selection in authentication system
-- **DEPLOYMENT READY**: All features tested, identity secure, comprehensive help system implemented
 
 ## User Preferences
 - Maintain mystery around identity until exploration complete

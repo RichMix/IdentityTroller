@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Hacker Terminal - Embedding Guide</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0a0a0a;
+            color: #00ff00;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .code-block {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .demo-container {
+            border: 2px solid #00ff00;
+            margin: 20px 0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        h1, h2 { color: #ff6b6b; }
+        .warning { color: #ffff00; background: #332200; padding: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>🔥 Elite Hacker Terminal - Website Embedding Guide</h1>
+    
+    <h2>📋 Quick Embed Code</h2>
+    <p>Copy and paste this code into your website's HTML:</p>
+    
+    <div class="code-block">
+&lt;!-- Elite Hacker Terminal Embed --&gt;
+&lt;iframe 
+    src="https://YOUR_REPLIT_URL.replit.app" 
+    width="100%" 
+    height="600" 
+    frameborder="0"
+    style="border-radius: 10px; box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);"
+    title="Elite Hacker Terminal"&gt;
+&lt;/iframe&gt;
+    </div>
+
+    <h2>🎯 Responsive Embed (Recommended)</h2>
+    <div class="code-block">
+&lt;div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%;"&gt;
+    &lt;iframe 
+        src="https://YOUR_REPLIT_URL.replit.app" 
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 10px;"
+        title="Elite Hacker Terminal"&gt;
+    &lt;/iframe&gt;
+&lt;/div&gt;
+    </div>
+
+    <h2>🚀 Custom Styling Options</h2>
+    <div class="code-block">
+&lt;!-- Fullscreen Terminal Embed --&gt;
+&lt;iframe 
+    src="https://YOUR_REPLIT_URL.replit.app" 
+    width="100%" 
+    height="100vh"
+    frameborder="0"
+    style="
+        border: none;
+        background: #000;
+        box-shadow: 
+            0 0 50px rgba(0, 255, 0, 0.5),
+            inset 0 0 50px rgba(0, 0, 0, 0.8);
+        border-radius: 15px;
+    "
+    allowfullscreen
+    title="Elite Hacker Terminal"&gt;
+&lt;/iframe&gt;
+    </div>
+
+    <h2>⚡ Advanced Integration</h2>
+    <div class="code-block">
+&lt;!-- Terminal with Loading Screen --&gt;
+&lt;div id="terminal-container" style="position: relative;"&gt;
+    &lt;div id="loading" style="
+        position: absolute; 
+        top: 50%; 
+        left: 50%; 
+        transform: translate(-50%, -50%);
+        color: #00ff00;
+        font-family: monospace;
+        z-index: 10;
+    "&gt;
+        &gt; Initializing secure connection...
+    &lt;/div&gt;
+    &lt;iframe 
+        src="https://YOUR_REPLIT_URL.replit.app" 
+        width="100%" 
+        height="600"
+        frameborder="0"
+        onload="document.getElementById('loading').style.display='none'"
+        style="border-radius: 10px; background: #000;"
+        title="Elite Hacker Terminal"&gt;
+    &lt;/iframe&gt;
+&lt;/div&gt;
+    </div>
+
+    <div class="warning">
+        <strong>⚠️ Important:</strong> Replace "YOUR_REPLIT_URL" with your actual Replit deployment URL once you deploy this project.
+    </div>
+
+    <h2>🎮 Demo Preview</h2>
+    <p>Here's how it will look embedded on your website:</p>
+    
+    <div class="demo-container">
+        <iframe 
+            src="." 
+            width="100%" 
+            height="400"
+            frameborder="0"
+            style="background: #000;"
+            title="Elite Hacker Terminal Demo">
+        </iframe>
+    </div>
+
+    <h2>🔧 Deployment Steps</h2>
+    <ol>
+        <li>Click the "Deploy" button in your Replit project</li>
+        <li>Copy your deployment URL (will end with .replit.app)</li>
+        <li>Replace "YOUR_REPLIT_URL" in the embed code above</li>
+        <li>Paste the code into your website's HTML</li>
+        <li>Test the embedded terminal on your site</li>
+    </ol>
+
+    <h2>🎨 Customization Tips</h2>
+    <ul>
+        <li><strong>Width:</strong> Use "100%" for full width or specific pixels like "800px"</li>
+        <li><strong>Height:</strong> Recommend minimum 400px for usability</li>
+        <li><strong>Border:</strong> Add glowing effects with CSS box-shadow</li>
+        <li><strong>Background:</strong> Match your site's theme</li>
+        <li><strong>Mobile:</strong> Use responsive embed code for mobile compatibility</li>
+    </ul>
+
+    <p style="text-align: center; margin-top: 40px; color: #666;">
+        Elite Hacker Terminal - Ready for deployment and embedding
+    </p>
+</body>
+</html>
