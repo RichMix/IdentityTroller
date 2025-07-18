@@ -1267,36 +1267,7 @@ export async function processCommand(input: string, sessionCommands: Set<string>
         { content: '<span class="text-terminal-green">Ready to exploit. Targets acquired.</span>', className: '' }
       ];
 
-    case 'decode':
-      const data = params.join(' ');
-      if (!data) {
-        return [
-          { content: '<span class="text-soft-red">Usage: decode <base64|hex|url> <data></span>', className: '' }
-        ];
-      }
-      try {
-        if (data.startsWith('base64:')) {
-          const decoded = atob(data.substring(7));
-          return [
-            { content: `<span class="text-neon-green">Base64 Decoded:</span> ${decoded}`, className: '' }
-          ];
-        } else if (data.startsWith('url:')) {
-          const decoded = decodeURIComponent(data.substring(4));
-          return [
-            { content: `<span class="text-neon-green">URL Decoded:</span> ${decoded}`, className: '' }
-          ];
-        } else {
-          return [
-            { content: `<span class="text-warning-yellow">Auto-detecting encoding for:</span> ${data}`, className: '' },
-            { content: `<span class="text-terminal-green">Possible Base64:</span> ${data.length % 4 === 0 ? 'Yes' : 'No'}`, className: '' },
-            { content: `<span class="text-terminal-green">Possible Hex:</span> ${/^[0-9A-Fa-f]+$/.test(data) ? 'Yes' : 'No'}`, className: '' }
-          ];
-        }
-      } catch (e) {
-        return [
-          { content: `<span class="text-soft-red">Decoding failed:</span> ${(e as Error).message}`, className: '' }
-        ];
-      }
+
 
     case 'hack':
       const hackLines: TerminalLine[] = [

@@ -119,8 +119,9 @@ export default function Terminal() {
     setHistoryIndex(newHistory.length);
 
     // Add command to output
+    const currentUser = sessionCommands.size >= 11 ? 'chopsueyy' : 'guest';
     setOutput(prev => [...prev, { 
-      content: `insurgent@hacker:~$ ${input}`, 
+      content: `${currentUser}@hacker:~$ ${input}`, 
       className: 'text-neon-green' 
     }]);
 
@@ -222,7 +223,7 @@ export default function Terminal() {
             <div className="w-3 h-3 bg-soft-red rounded-full"></div>
             <div className="w-3 h-3 bg-warning-yellow rounded-full"></div>
             <div className="w-3 h-3 bg-terminal-green rounded-full"></div>
-            <span className="ml-4 text-sm">insurgent@hacker:~$</span>
+            <span className="ml-4 text-sm">{sessionCommands.size >= 11 ? 'chopsueyy' : 'guest'}@hacker:~$</span>
           </div>
         </div>
         
@@ -243,7 +244,7 @@ export default function Terminal() {
           <div className="p-4 border-t border-terminal-green bg-terminal-bg">
             <form onSubmit={handleSubmit}>
               <div className="flex items-center relative">
-                <span className="text-neon-green mr-2">insurgent@hacker:~$</span>
+                <span className="text-neon-green mr-2">{sessionCommands.size >= 11 ? 'chopsueyy' : 'guest'}@hacker:~$</span>
                 <input
                   ref={inputRef}
                   type="text"
