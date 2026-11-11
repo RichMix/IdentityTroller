@@ -1,0 +1,1 @@
+- [Production build verification](production-build-verification.md) — dependency changes must pass the production build, not just TypeScript and preview checks.

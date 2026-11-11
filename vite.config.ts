@@ -25,6 +25,9 @@ export default defineConfig({
   },
   root: path.resolve(import.meta.dirname, "client"),
   build: {
+    // esbuild 0.27 cannot lower array destructuring for Safari 14.0.
+    // Keep Vite 6's other default targets and require Safari 14.1 or newer.
+    target: ["es2020", "chrome87", "edge88", "firefox78", "safari14.1"],
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
   },
